@@ -1,0 +1,83 @@
+{
+  "name": "niobe",
+  "version": "0.0.0",
+  "description": "Tooling for creating durations",
+  "main": "./dist/index.jcs",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "prebuild": "rm -rf ./dist",
+    "postbuild": "rm -rf ./dist/.types",
+    "build": "rollup -c rollup.config.ts --configPlugin typescript",
+    "release": "release-it",
+    "test": "vitest"
+  },
+  "repository": "github:simmo/niobe",
+  "keywords": [
+    "duration",
+    "time",
+    "date",
+    "datetime",
+    "date-time",
+    "tools",
+    "utilities",
+    "helpers"
+  ],
+  "author": "Mike Simmonds (https://mike.id)",
+  "license": "MIT",
+  "bugs": "https://github.com/simmo/niobe/issues",
+  "homepage": "https://github.com/simmo/niobe#readme",
+  "devDependencies": {
+    "@release-it/keep-a-changelog": "^7.0.0",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@tsconfig/node-lts": "^22.0.1",
+    "@types/node": "^22.15.3",
+    "prettier": "^3.5.3",
+    "release-it": "^19.0.1",
+    "rollup": "^4.40.1",
+    "rollup-plugin-dts": "^6.2.1",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "singleQuote": true,
+    "useTabs": true,
+    "overrides": [
+      {
+        "files": [
+          "*.yml",
+          "package.json",
+          "package-lock.json"
+        ],
+        "options": {
+          "tabWidth": 2,
+          "useTabs": false
+        }
+      }
+    ]
+  },
+  "release-it": {
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/keep-a-changelog": {
+        "filename": "CHANGELOG.md"
+      }
+    }
+  }
+}
