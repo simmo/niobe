@@ -1,0 +1,20 @@
+import { describe, expect, it } from 'vitest';
+import * as constants from './constant.js';
+
+describe('constant', () => {
+	it('exports all time units in milliseconds', _ => {
+		expect(constants).toMatchInlineSnapshot(`
+			{
+			  "DAY": 86400000,
+			  "HOUR": 3600000,
+			  "HOURS_IN_DAY": 24,
+			  "MILLISECOND": 1,
+			  "MILLISECONDS_IN_A_SECOND": 1000,
+			  "MINUTE": 60000,
+			  "MINUTES_IN_HOUR": 60,
+			  "SECOND": 1000,
+			  "SECONDS_IN_MINUTE": 60,
+			}
+		`);
+	});
+});
