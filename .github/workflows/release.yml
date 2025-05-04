@@ -1,0 +1,123 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        default: prerelease
+        description: 'Type'
+        options:
+          - prerelease
+          - prepatch
+          - preminor
+          - premajor
+          - patch
+          - minor
+          - major
+        required: true
+        type: choice
+      dry-run:
+        default: false
+        description: 'Dry Run'
+        required: false
+        type: boolean
+  # pull_request:
+  # push:
+  #   branches: main
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        id: setup
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install
+        run: npm ci
+
+      # - name: Lint
+      #   run: npm run lint
+
+      # - name: Format
+      #   run: npm run format
+
+      - name: Test
+        run: npm test
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: validate
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        id: setup
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 1
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 5
+    if: github.ref_name == 'main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        id: setup
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+      # - name: Configure NPM
+      # run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+
+      - name: Install
+        run: npm ci
+
+      - name: Download
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Release
+        run: npm run release -- ${{ inputs.release }} --ci ${{ contains(fromJSON('["premajor", "preminor", "prepatch", "prerelease"]'), inputs.release) && '--preRelease=beta' || '' }} --dry-run=${{ inputs['dry-run'] }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
