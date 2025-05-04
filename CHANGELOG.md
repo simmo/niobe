@@ -13,3 +13,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Constants for time units
 - Unit converter functions for `days`, `hours`, `minutes`, `seconds` and `milliseconds`
 - `toParts` function to convert milliseconds to an object with properties for each time unit
+- `parseDuration` function to parse a duration string into milliseconds

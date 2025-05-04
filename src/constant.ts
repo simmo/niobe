@@ -32,22 +32,22 @@ export const DAY = 86_400_000;
  * Number of milliseconds in a second.
  */
 
-export const MILLISECONDS_IN_A_SECOND = SECOND / MILLISECOND;
+export const MILLISECONDS_IN_A_SECOND = 1_000;
 
 /**
  * Number of seconds in a minute.
  */
 
-export const SECONDS_IN_MINUTE = MINUTE / SECOND;
+export const SECONDS_IN_MINUTE = 60;
 
 /**
  * Number of minutes in an hour.
  */
 
-export const MINUTES_IN_HOUR = HOUR / MINUTE;
+export const MINUTES_IN_HOUR = 60;
 
 /**
  * Number of hours in a day.
  */
 
-export const HOURS_IN_DAY = DAY / HOUR;
+export const HOURS_IN_DAY = 24;

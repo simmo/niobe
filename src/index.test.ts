@@ -18,6 +18,7 @@ describe('api', () => {
 			  "hours": [Function],
 			  "milliseconds": [Function],
 			  "minutes": [Function],
+			  "parseDuration": [Function],
 			  "seconds": [Function],
 			  "toParts": [Function],
 			}

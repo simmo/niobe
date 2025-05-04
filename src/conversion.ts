@@ -28,7 +28,8 @@ export const seconds = createUnitConverter(SECOND);
 /**
  * Converts between milliseconds and milliseconds.
  *
- * Note: This is a no-op function that simply returns the input value.
+ * @remarks
+ * This is a no-op function that simply returns the input value.
  * It is included for completeness and to match the other functions and not typically used in practice, as milliseconds are already in milliseconds.
  * However, it can be useful for consistency in the API.
  */
