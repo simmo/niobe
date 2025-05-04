@@ -17,6 +17,8 @@
     "prebuild": "rm -rf ./dist",
     "postbuild": "rm -rf ./dist/.types",
     "build": "rollup -c rollup.config.ts --configPlugin typescript",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
     "release": "release-it",
     "test": "vitest"
   },

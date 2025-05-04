@@ -21,9 +21,6 @@ on:
         description: 'Dry Run'
         required: false
         type: boolean
-  # pull_request:
-  # push:
-  #   branches: main
 
 jobs:
   validate:
@@ -47,8 +44,8 @@ jobs:
       # - name: Lint
       #   run: npm run lint
 
-      # - name: Format
-      #   run: npm run format
+      - name: Format
+        run: npm run format
 
       - name: Test
         run: npm test
@@ -99,13 +96,13 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
+      - name: Configure NPM
+        run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+
       - name: Configure Git
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-
-      # - name: Configure NPM
-      # run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
 
       - name: Install
         run: npm ci
