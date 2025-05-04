@@ -1,5 +1,5 @@
 {
-	"cSpell.words": ["niobe", "simmo"],
+	"cSpell.words": ["niobe", "premajor", "preminor", "prepatch", "simmo"],
 	"javascript.preferences.importModuleSpecifierEnding": "js",
 	"typescript.preferences.autoImportSpecifierExcludeRegexes": ["node:test"],
 	"typescript.preferences.importModuleSpecifierEnding": "js"

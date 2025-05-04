@@ -1,0 +1,29 @@
+name: Setup
+
+inputs:
+  npm-token:
+    required: true
+    type: string
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: '.nvmrc'
+        cache: 'npm'
+
+    - name: Install
+      shell: bash
+      run: npm ci
+
+    - name: Configure NPM
+      shell: bash
+      run: npm config set //registry.npmjs.org/:_authToken ${{ inputs.npm-token }}
+
+    - name: Configure Git
+      shell: bash
+      run: |
+        git config user.name "${GITHUB_ACTOR}"
+        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"

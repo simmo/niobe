@@ -1,6 +1,20 @@
 name: Release
 
 on:
+  workflow_call:
+    inputs:
+      release:
+        default: prerelease
+        description: 'Release Type'
+        required: true
+        type: string
+      dry-run:
+        default: false
+        description: 'Dry Run'
+        type: boolean
+    secrets:
+      NPM_TOKEN:
+        required: true
   workflow_dispatch:
     inputs:
       release:
@@ -20,58 +34,29 @@ on:
         default: false
         description: 'Dry Run'
         type: boolean
-  workflow_run:
-    workflows: [CI]
-    types: [completed]
-    branches: [main]
 
 env:
-  RELEASE: ${{ inputs.release || 'prerelease' }}
+  IS_PRERELEASE: ${{ contains(fromJSON('["premajor", "preminor", "prepatch", "prerelease"]'), inputs.release)}}
 
 jobs:
-  ci:
-    name: CI
-    if: github.event_name == 'workflow_dispatch'
-    uses: ./.github/workflows/ci.yml
-    secrets: inherit
-
   release:
     name: Release
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup
-        id: setup
-        uses: actions/setup-node@v3
+        uses: ./.github/actions/setup
         with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
+          npm-token: ${{ secrets.NPM_TOKEN }}
 
-      - name: Configure NPM
-        run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-
-      - name: Configure Git
-        run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-
-      - name: Install
-        run: npm ci
-
-      - name: Download
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
+      - name: Build
+        run: npm run build
 
       - name: Release
-        run: npm run release -- ${{ env.RELEASE }} --ci ${{ contains(fromJSON('["premajor", "preminor", "prepatch", "prerelease"]'), env.RELEASE) && '--preRelease=beta' || '' }} --dry-run=${{ inputs.dry-run}}
+        run: npm run release -- ${{ inputs.release }} --ci ${{ env.IS_PRERELEASE && '--preRelease=beta --plugins.@release-it/keep-a-changelog.keepUnreleased' || '' }} --dry-run=${{ inputs.dry-run }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
