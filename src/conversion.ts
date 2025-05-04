@@ -14,13 +14,13 @@ export const days = createUnitConverter(DAY);
 export const hours = createUnitConverter(HOUR);
 
 /**
- * Converts between hours and milliseconds.
+ * Converts between minutes and milliseconds.
  */
 
 export const minutes = createUnitConverter(MINUTE);
 
 /**
- * Converts between hours and milliseconds.
+ * Converts between seconds and milliseconds.
  */
 
 export const seconds = createUnitConverter(SECOND);

@@ -71,7 +71,7 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
 
       - name: Release
-        run: npm run release -- ${{ env.RELEASE }} --ci ${{ contains(fromJSON('["premajor", "preminor", "prepatch", "prerelease"]'), env.RELEASE) && '--preRelease=beta' || '' }} --dry-run=true
+        run: npm run release -- ${{ env.RELEASE }} --ci ${{ contains(fromJSON('["premajor", "preminor", "prepatch", "prerelease"]'), env.RELEASE) && '--preRelease=beta' || '' }} --dry-run=${{ inputs.dry-run}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

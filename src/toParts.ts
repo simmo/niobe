@@ -2,10 +2,16 @@ import {
 	HOURS_IN_DAY,
 	MILLISECONDS_IN_A_SECOND,
 	MINUTES_IN_HOUR,
-	SECOND,
 	SECONDS_IN_MINUTE,
 } from './constant.js';
 import { days, hours, minutes, seconds } from './conversion.js';
+
+/**
+ * Converts a duration in milliseconds to an object with properties for each time unit.
+ *
+ * @param ms The duration in milliseconds to convert
+ * @returns An object with properties for each time unit
+ */
 
 export const toParts = (ms: number) => {
 	const absoluteMs = Math.abs(ms);
