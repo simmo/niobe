@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-05-05
+
 ### Added
 
 - `weeks` unit converter
@@ -47,7 +49,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `toParts` function to convert milliseconds to an object with properties for each time unit
 - `parseDuration` function to parse a duration string into milliseconds
 
-[unreleased]: https://github.com/simmo/niobe/compare/1.0.0...HEAD
+[unreleased]: https://github.com/simmo/niobe/compare/1.1.0...HEAD
 [1.0.0]: https://github.com/simmo/niobe/compare/0.0.2...1.0.0
 [0.0.2]: https://github.com/simmo/niobe/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/simmo/niobe/compare/f3751e...0.0.1
+
+[1.1.0]: https://github.com/simmo/niobe/compare/1.0.1-beta.1...1.1.0
