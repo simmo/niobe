@@ -15,9 +15,35 @@
 
 ---
 
-## Usage
+## The Problem
 
-This library provides a set of functions to convert between different time units (milliseconds, seconds, minutes, hours, and days) and to parse durations from strings.
+How often do you write code like this?
+
+```ts
+setTimeout(() => /* Do something */, 1_000 * 60 * 2.5);
+```
+
+It is hard to understand what `1_000 * 60 * 2.5` means at first glance, although we get used to seeing common durations in our projects, there is an additional cognitive load when reading and writing code like this. The alternative is to create constants but when you have multiple engineers working on a project, it can be hard to keep track of what is in use, you get different naming conventions and you may end up with multiple constants for the same thing.
+
+## The Solution
+
+**Niobe** provides a simple, unified, human readable way to provide durations. The same duration can be expressed as:
+
+```ts
+import { minutes, seconds } from 'niobe';
+
+setTimeout(() => /* Do something */}, minutes(2) + seconds(30));
+```
+
+Additionally, Niobe provides [utilities](#utilities) to parse durations, split them into their components and [convert](#conversion) between different time units. There is even a range of common [constants](#constants).
+
+---
+
+## Installation
+
+```bash
+npm install niobe
+```
 
 ## API
 
@@ -43,10 +69,7 @@ Converts between seconds and milliseconds.
 
 Converts between milliseconds and milliseconds.
 
-> [!NOTE]
-> This is a no-op function that simply returns the input value.
-> It is included for completeness and to match the other functions and not typically used in practice, as milliseconds are already in milliseconds.
-> However, it can be useful for consistency in the API.
+_[This seems pointless, why is it here?](#this-seems-pointless-why-is-it-here)_
 
 #### `days.from(ms: number): number`
 
@@ -68,10 +91,7 @@ Converts between milliseconds and seconds.
 
 Converts between milliseconds and milliseconds.
 
-> [!NOTE]
-> This is a no-op function that simply returns the input value.
-> It is included for completeness and to match the other functions and not typically used in practice, as milliseconds are already in milliseconds.
-> However, it can be useful for consistency in the API.
+_[This seems pointless, why is it here?](#this-seems-pointless-why-is-it-here)_
 
 ### Utilities
 
@@ -117,8 +137,7 @@ These constants are used to represent the number of milliseconds in each time un
 
 One millisecond.
 
-> [!NOTE]
-> Added from completeness.
+_[This seems pointless, why is it here?](#this-seems-pointless-why-is-it-here)_
 
 #### `SECOND`
 
@@ -151,3 +170,25 @@ Number of minutes in an hour.
 #### `HOURS_IN_A_DAY`
 
 Number of hours in a day.
+
+---
+
+## FAQs
+
+<details>
+<summary id="why-niobe">
+Why is it called Niobe?
+</summary>
+Naming things is hard! Most package names are taken so my approach is often something random. In this instance Niobe is a reference to a character in the Matrix films.
+</details>
+
+<details>
+<summary id="this-seems-pointless-why-is-it-here">
+"This seems pointless, why is it here?"
+</summary>
+There are several components in the API that are no-ops, meaning they don't actually do anything. For example, the `milliseconds` function simply returns the input value. This is included for completeness and to match the other functions, but is not typically used in practice, as milliseconds are already in milliseconds. However, it can be useful for consistency in the API or maybe you need to do something where you conditionally switch between functions.
+</details>
+
+---
+
+(c) 2025 Mike Simmonds (https://mike.id)
