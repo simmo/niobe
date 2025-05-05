@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Contributing guide (thanks [@simmo])
 - Security policy (thanks [@simmo])
-- Issue templates (thanks [@simmo])
+- PR + issue templates (thanks [@simmo])
 
 ### Changed
 
