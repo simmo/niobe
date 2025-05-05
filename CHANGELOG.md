@@ -11,10 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `weeks` unit converter
 - `WEEK` and `DAYS_IN_WEEK` constants
+- `weeks` to `toParts` function output
 
 ### Changed
 
 - Updated dev dependencies
+- Output modules in distribution
 
 ### Fixes
 
