@@ -122,7 +122,7 @@ parseDuration('1h 2m 3s');
 ###### Invalid format - Non-strict
 
 ```ts
-parseDuration('invalid', true);
+parseDuration('invalid'); // or parseDuration('invalid', false);
 // => 0
 ```
 
