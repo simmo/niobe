@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2025-05-05
+
 ### Added
 
 - Contributing guide (thanks [@simmo])
@@ -64,10 +66,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `parseDuration` function to parse a duration string into milliseconds (thanks [@simmo])
 
 [#3]: https://github.com/simmo/niobe/pull/3
-[unreleased]: https://github.com/simmo/niobe/compare/1.1.0...HEAD
+[unreleased]: https://github.com/simmo/niobe/compare/1.1.1...HEAD
 [1.0.0]: https://github.com/simmo/niobe/compare/0.0.2...1.0.0
 [0.0.2]: https://github.com/simmo/niobe/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/simmo/niobe/compare/f3751e...0.0.1
 [1.1.0]: https://github.com/simmo/niobe/compare/1.0.1-beta.1...1.1.0
 [@simmo]: https://github.com/simmo
 [@spyros-uk]: https://github.com/spyros-uk
+
+[1.1.1]: https://github.com/simmo/niobe/compare/1.1.1-beta.2...1.1.1
