@@ -9,6 +9,7 @@ jobs:
   check:
     name: Check
     uses: ./.github/workflows/test.yml
+    secrets: inherit
 
   prerelease:
     name: Prerelease
