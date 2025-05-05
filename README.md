@@ -1,17 +1,13 @@
 <br/>
 
-<div align="center">
-
 <picture>
 	<source media="(prefers-color-scheme: dark)" srcset="./.github/assets/logo-dark.svg">
-	<img alt="Niobe logo" src="./.github/assets/logo-light.svg" width="100">
+	<img alt="Niobe logo" src="./.github/assets/logo-light.svg" width="150">
 </picture>
 
-<small>A simple and elegant way to manage time-based events and intervals in your applications</small>
+<small>A simple way to manage time-based intervals in your applications.</small>
 
-![npm (latest)](https://img.shields.io/npm/v/niobe/latest?color=00b894&label=latest&style=flat) ![npm (beta)](https://img.shields.io/npm/v/niobe/beta?color=0984e3&label=beta&style=flat) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/simmo/niobe/ci.yml?style=flat)
-
-</div>
+[![npm (latest)](https://img.shields.io/npm/v/niobe/latest?color=00b894&label=latest&style=flat)](https://www.npmjs.com/package/niobe) [![npm (beta)](https://img.shields.io/npm/v/niobe/beta?color=0984e3&label=beta&style=flat)](https://www.npmjs.com/package/niobe?activeTab=versions) [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/simmo/niobe/ci.yml?style=flat)](https://github.com/simmo/niobe/actions/workflows/ci.yml)
 
 ---
 
@@ -42,7 +38,7 @@ Additionally, Niobe provides [utilities](#utilities) to parse durations, split t
 ## Installation
 
 ```bash
-npm install niobe
+npm i niobe
 ```
 
 ## API
@@ -119,10 +115,13 @@ parseDuration('1h 2m 3s');
 // => 3_723_004
 ```
 
-###### Invalid format - Non-strict
+###### Invalid format - Non-strict (Default)
 
 ```ts
-parseDuration('invalid'); // or parseDuration('invalid', false);
+parseDuration('invalid');
+// => 0
+
+parseDuration('invalid', false);
 // => 0
 ```
 
