@@ -2,7 +2,6 @@ name: Setup
 
 inputs:
   npm-token:
-    required: true
     type: string
 
 runs:
@@ -20,6 +19,7 @@ runs:
 
     - name: Configure NPM
       shell: bash
+      if: inputs.npm-token
       run: npm config set //registry.npmjs.org/:_authToken ${{ inputs.npm-token }}
 
     - name: Configure Git

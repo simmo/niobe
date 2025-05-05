@@ -56,6 +56,7 @@ jobs:
         run: npm run build
 
       - name: Release
+        continue-on-error: ${{ inputs.release == 'prerelease' }}
         run: npm run release -- ${{ inputs.release }} --ci ${{ contains(fromJSON('["premajor", "preminor", "prepatch", "prerelease"]'), inputs.release) && '--preRelease=beta --plugins.@release-it/keep-a-changelog.keepUnreleased' || '' }} --dry-run=${{ inputs.dry-run }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

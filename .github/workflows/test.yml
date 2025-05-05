@@ -14,8 +14,6 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/setup
-        with:
-          npm-token: ${{ secrets.NPM_TOKEN }}
 
       - name: Test
         run: npm test
@@ -33,8 +31,6 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/setup
-        with:
-          npm-token: ${{ secrets.NPM_TOKEN }}
 
       - name: Format
         run: npm run format
