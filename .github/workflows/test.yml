@@ -20,8 +20,8 @@ jobs:
       - name: Test
         run: npm test
 
-      # - name: Typecheck
-      #   run: npm run typecheck
+      - name: Typecheck
+        run: npm run typecheck
 
   code-style:
     name: Code Style

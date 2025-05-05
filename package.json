@@ -20,7 +20,8 @@
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "release": "release-it",
-    "test": "vitest"
+    "test": "vitest",
+    "typecheck": "tsc --noEmit --extendedDiagnostics"
   },
   "repository": "github:simmo/niobe",
   "keywords": [
