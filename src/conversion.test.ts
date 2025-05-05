@@ -1,30 +1,3 @@
-// const creationFnsTestCases: [fn: UnitConverter, unit: string, ms: number][] = [
-// 	[seconds, 'second', 1_000],
-// 	[minutes, 'minute', 60_000],
-// 	[hours, 'hour', 3_600_000],
-// 	[days, 'day', 86_400_000],
-// ];
-//
-// creationFnsTestCases.forEach(([fn, unit, ms]) => {
-// 	describe(`${fn.name}()`, () => {
-// 		it.each([1, 2, 3, 5, 8])(
-// 			`returns %sx ${fn.name} in milliseconds`,
-// 			input => {
-// 				expect(fn(input)).toBe(input * ms);
-// 			},
-// 		);
-// 	});
-
-// 	describe(`${fn.name}.from()`, () => {
-// 		it.each([1, 2, 3, 5, 8])(
-// 			`returns %sx ${fn.name} from milliseconds`,
-// 			input => {
-// 				expect(fn.from(input * ms)).toBe(input);
-// 			},
-// 		);
-// 	});
-// });
-
 import { describe, expect, it } from 'vitest';
 import { days, hours, minutes, seconds } from './conversion.js';
 import { UnitConverter } from './utils/createUnitConverter.js';
