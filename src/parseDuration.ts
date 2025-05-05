@@ -17,7 +17,7 @@ const regex = new RegExp(
 );
 
 /**
- * Parses a string into a duration, in milliseconds.
+ * Parses a duration string, returning milliseconds.
  *
  * @param duration String to parse
  * @param strict Indicates whether to disallow invalid formats [Default: `false`]

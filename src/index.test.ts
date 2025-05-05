@@ -6,6 +6,7 @@ describe('api', () => {
 		expect(api).toMatchInlineSnapshot(`
 			{
 			  "DAY": 86400000,
+			  "DAYS_IN_WEEK": 7,
 			  "HOUR": 3600000,
 			  "HOURS_IN_DAY": 24,
 			  "MILLISECOND": 1,
@@ -14,6 +15,7 @@ describe('api', () => {
 			  "MINUTES_IN_HOUR": 60,
 			  "SECOND": 1000,
 			  "SECONDS_IN_MINUTE": 60,
+			  "WEEK": 604800000,
 			  "days": [Function],
 			  "hours": [Function],
 			  "milliseconds": [Function],
@@ -21,6 +23,7 @@ describe('api', () => {
 			  "parseDuration": [Function],
 			  "seconds": [Function],
 			  "toParts": [Function],
+			  "weeks": [Function],
 			}
 		`);
 	});

@@ -29,6 +29,12 @@ export const HOUR = 3_600_000;
 export const DAY = 86_400_000;
 
 /**
+ * One week in milliseconds.
+ */
+
+export const WEEK = 604_800_000;
+
+/**
  * Number of milliseconds in a second.
  */
 
@@ -51,3 +57,9 @@ export const MINUTES_IN_HOUR = 60;
  */
 
 export const HOURS_IN_DAY = 24;
+
+/**
+ * Number of days in a week.
+ */
+
+export const DAYS_IN_WEEK = 7;
