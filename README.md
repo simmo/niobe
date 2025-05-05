@@ -49,6 +49,10 @@ npm install niobe
 
 ### Conversion
 
+#### `weeks(amount: number): number`
+
+Converts between weeks and milliseconds.
+
 #### `days(amount: number): number`
 
 Converts between days and milliseconds.
@@ -70,6 +74,10 @@ Converts between seconds and milliseconds.
 Converts between milliseconds and milliseconds.
 
 _[This seems pointless, why is it here?](#this-seems-pointless-why-is-it-here)_
+
+#### `weeks.from(ms: number): number`
+
+Converts between milliseconds and weeks.
 
 #### `days.from(ms: number): number`
 
@@ -155,6 +163,10 @@ One hour in milliseconds.
 
 One day in milliseconds.
 
+#### `WEEK`
+
+One week in milliseconds.
+
 #### `MILLISECONDS_IN_SECOND`
 
 Number of milliseconds in a second.
@@ -170,6 +182,10 @@ Number of minutes in an hour.
 #### `HOURS_IN_DAY`
 
 Number of hours in a day.
+
+#### `DAYS_IN_WEEK`
+
+Number of days in a week.
 
 ---
 

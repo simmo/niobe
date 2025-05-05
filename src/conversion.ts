@@ -1,5 +1,11 @@
-import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from './constant.js';
+import { DAY, HOUR, MILLISECOND, MINUTE, SECOND, WEEK } from './constant.js';
 import { createUnitConverter } from './utils/createUnitConverter.js';
+
+/**
+ * Converts between of weeks and milliseconds.
+ */
+
+export const weeks = createUnitConverter(WEEK);
 
 /**
  * Converts between of days and milliseconds.
