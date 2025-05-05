@@ -24,7 +24,7 @@ const regex = new RegExp(
  * @returns The duration in milliseconds
  * @throws Error if the string is not a valid duration and strict is true
  *
- * @example Valid format
+ * @example Valid formats
  * ```ts
  * parseDuration('2m 1s');
  * // => 121_000

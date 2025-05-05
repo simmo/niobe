@@ -1,4 +1,17 @@
+/**
+ * Constants
+ */
+
 export * from './constant.js';
+
+/**
+ * Conversion
+ */
+
 export * from './conversion.js';
-export { parseDuration } from './parseDuration.js';
-export { toParts } from './toParts.js';
+
+/**
+ * Utilities
+ */
+
+export * from './utilities.js';
