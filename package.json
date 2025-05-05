@@ -1,6 +1,6 @@
 {
   "name": "niobe",
-  "version": "1.0.1-beta.0",
+  "version": "1.0.1-beta.1",
   "description": "Tooling for creating durations",
   "main": "./dist/index.jcs",
   "module": "./dist/index.js",
