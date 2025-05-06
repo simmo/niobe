@@ -206,4 +206,4 @@ There are several components in the API that are no-ops, meaning they don't actu
 
 ---
 
-© 2025 Mike Simmonds (https://mike.id)
+<small>© 2025 [Mike Simmonds](https://mike.id)</small>

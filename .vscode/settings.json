@@ -1,6 +1,7 @@
 {
 	"cSpell.words": ["niobe", "premajor", "preminor", "prepatch", "simmo"],
 	"javascript.preferences.importModuleSpecifierEnding": "js",
+	"typescript.tsdk": "node_modules/typescript/lib",
 	"typescript.preferences.autoImportSpecifierExcludeRegexes": ["node:test"],
 	"typescript.preferences.importModuleSpecifierEnding": "js"
 }
