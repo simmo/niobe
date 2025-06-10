@@ -70,5 +70,3 @@ export const parseDuration = (
 
 	return total ?? 0;
 };
-
-parseDuration('1s', false); // $ExpectType number

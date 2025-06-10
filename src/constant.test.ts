@@ -9,17 +9,39 @@ const constantsAndValues: [
 	['DAYS_IN_WEEK', 7],
 	['HOUR', 3_600_000],
 	['HOURS_IN_DAY', 24],
+	['MICROSECOND', 0.001],
+	['MICROSECONDS_IN_A_MILLISECOND', 1_000],
 	['MILLISECOND', 1],
 	['MILLISECONDS_IN_A_SECOND', 1_000],
 	['MINUTE', 60_000],
 	['MINUTES_IN_HOUR', 60],
+	['NANOSECOND', 0.000_001],
+	['NANOSECONDS_IN_A_MICROSECOND', 1_000],
 	['SECOND', 1_000],
 	['SECONDS_IN_MINUTE', 60],
 	['WEEK', 604_800_000],
 ];
 
-describe.each(constantsAndValues)('%s', (constant, value) => {
-	it(`returns ${value}`, _ => {
-		expect(constants[constant]).toBe(value);
+describe('constants', () => {
+	it('exports the correct values', () => {
+		expect(constants).toMatchInlineSnapshot(`
+			{
+			  "DAY": 86400000,
+			  "DAYS_IN_WEEK": 7,
+			  "HOUR": 3600000,
+			  "HOURS_IN_DAY": 24,
+			  "MICROSECOND": 0.001,
+			  "MICROSECONDS_IN_A_MILLISECOND": 1000,
+			  "MILLISECOND": 1,
+			  "MILLISECONDS_IN_A_SECOND": 1000,
+			  "MINUTE": 60000,
+			  "MINUTES_IN_HOUR": 60,
+			  "NANOSECOND": 0.000001,
+			  "NANOSECONDS_IN_A_MICROSECOND": 1000,
+			  "SECOND": 1000,
+			  "SECONDS_IN_MINUTE": 60,
+			  "WEEK": 604800000,
+			}
+		`);
 	});
 });

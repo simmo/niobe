@@ -1,4 +1,13 @@
-import { DAY, HOUR, MILLISECOND, MINUTE, SECOND, WEEK } from './constant.js';
+import {
+	DAY,
+	HOUR,
+	MICROSECOND,
+	MILLISECOND,
+	MINUTE,
+	NANOSECOND,
+	SECOND,
+	WEEK,
+} from './constant.js';
 import { createUnitConverter } from './utils/createUnitConverter.js';
 
 /**
@@ -41,3 +50,15 @@ export const seconds = createUnitConverter(SECOND);
  */
 
 export const milliseconds = createUnitConverter(MILLISECOND);
+
+/**
+ * Converts between microseconds and milliseconds.
+ */
+
+export const microseconds = createUnitConverter(MICROSECOND);
+
+/**
+ * Converts between nanoseconds and milliseconds.
+ */
+
+export const nanoseconds = createUnitConverter(NANOSECOND);

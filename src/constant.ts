@@ -1,4 +1,16 @@
 /**
+ * One nanosecond in milliseconds.
+ */
+
+export const NANOSECOND = 0.000_001;
+
+/**
+ * One microsecond in milliseconds.
+ */
+
+export const MICROSECOND = 0.001;
+
+/**
  * One unit of milliseconds.
  */
 
@@ -33,6 +45,18 @@ export const DAY = 86_400_000;
  */
 
 export const WEEK = 604_800_000;
+
+/**
+ * Number of nanoseconds in a microsecond.
+ */
+
+export const NANOSECONDS_IN_A_MICROSECOND = 1_000;
+
+/**
+ * Number of microseconds in a millisecond.
+ */
+
+export const MICROSECONDS_IN_A_MILLISECOND = 1_000;
 
 /**
  * Number of milliseconds in a second.
