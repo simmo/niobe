@@ -27,6 +27,8 @@ const testCases: [string[], number][] = [
 	[['1m', '2s', '3ms'], 62_003],
 	[['1h', '2m', '3s', '4ms'], 3_723_004],
 	[['1d', '2h', '3m', '4s', '5ms'], 93_784_005],
+	[['1d', '2h', '3m', '4s', '5ms', '6μs'], 93_784_005.006],
+	[['1d', '2h', '3m', '4s', '5ms', '6μs', '7ns'], 93_784_005.006_007],
 ];
 
 describe('parseDuration()', () => {
@@ -36,6 +38,8 @@ describe('parseDuration()', () => {
 		expect(parseDuration('1h')).toBe(3_600_000);
 		expect(parseDuration('1d')).toBe(86_400_000);
 		expect(parseDuration('1ms')).toBe(1);
+		expect(parseDuration('1μs')).toBe(0.001);
+		expect(parseDuration('1ns')).toBe(0.000_001);
 	});
 
 	it.each([

@@ -1,9 +1,18 @@
-import { days, hours, minutes, seconds } from './conversion.js';
+import {
+	days,
+	hours,
+	microseconds,
+	minutes,
+	nanoseconds,
+	seconds,
+} from './conversion.js';
 import { UnitConverter } from './utils/createUnitConverter.js';
 
-type TimeUnit = 'ms' | 's' | 'm' | 'h' | 'd';
+type TimeUnit = 'ns' | 'μs' | 'ms' | 's' | 'm' | 'h' | 'd';
 
 const unitToConverterMap = {
+	ns: nanoseconds,
+	μs: microseconds,
 	ms: null,
 	s: seconds,
 	m: minutes,
