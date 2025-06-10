@@ -1,8 +1,20 @@
 import { describe, expect, it } from 'vitest';
-import { days, hours, minutes, seconds, weeks } from './conversion.js';
+import {
+	days,
+	hours,
+	microseconds,
+	milliseconds,
+	minutes,
+	nanoseconds,
+	seconds,
+	weeks,
+} from './conversion.js';
 import { UnitConverter } from './utils/createUnitConverter.js';
 
 const testCases: [unit: string, fn: UnitConverter, milliseconds: number][] = [
+	['nanoseconds', nanoseconds, 0.000_001],
+	['microseconds', microseconds, 0.001],
+	['milliseconds', milliseconds, 1],
 	['seconds', seconds, 1_000],
 	['minutes', minutes, 60_000],
 	['hours', hours, 3_600_000],

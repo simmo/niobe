@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Code coverage check (thanks [@simmo])
+- Microseconds and nanoseconds support (thanks [@simmo])
+
 ## [1.1.2] - 2025-05-06
 
 ### Changes
@@ -84,5 +89,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [@simmo]: https://github.com/simmo
 [@spyros-uk]: https://github.com/spyros-uk
 [1.1.1]: https://github.com/simmo/niobe/compare/1.1.1-beta.2...1.1.1
-
 [1.1.2]: https://github.com/simmo/niobe/compare/1.1.2-beta.0...1.1.2
