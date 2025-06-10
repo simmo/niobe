@@ -113,6 +113,9 @@ parseDuration('2m 1s');
 
 parseDuration('1h 2m 3s');
 // => 3_723_004
+
+parseDuration('1d 2h 3m 4s 5ms 6μs 7ns');
+// => 93_784_005.006_007
 ```
 
 ###### Invalid format - Non-strict (Default)
@@ -132,13 +135,41 @@ parseDuration('invalid', true);
 // => throws Error: "invalid" is not a valid duration
 ```
 
-#### `toParts(milliseconds: number): { days: number, hours: number, minutes: number, seconds: number, milliseconds: number }`
+#### `toParts(milliseconds: number): Parts`
 
-Converts a duration in milliseconds to an object with properties for each time unit.
+Converts a duration in milliseconds to a [Parts](#parts) object with properties for each time unit.
+
+### Types
+
+#### `Parts`
+
+Used in the [`toParts`](#topartsmilliseconds-number-parts) function, this type represents the parts of a duration.
+
+```ts
+interface Parts {
+	days: number;
+	hours: number;
+	isNegative: boolean;
+	nanoseconds: number;
+	microseconds: number;
+	milliseconds: number;
+	minutes: number;
+	seconds: number;
+	weeks: number;
+}
+```
 
 ### Constants
 
 These constants are used to represent the number of milliseconds in each time unit.
+
+#### `NANOSECOND`
+
+One nanosecond in milliseconds.
+
+#### `MICROSECOND`
+
+One microsecond in milliseconds.
 
 #### `MILLISECOND`
 
@@ -165,6 +196,14 @@ One day in milliseconds.
 #### `WEEK`
 
 One week in milliseconds.
+
+#### `NANOSECONDS_IN_MICROSECOND`
+
+Number of nanoseconds in a second.
+
+#### `MICROSECONDS_IN_MILLISECOND`
+
+Number of microseconds in a second.
 
 #### `MILLISECONDS_IN_SECOND`
 

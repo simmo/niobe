@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Breaking
+
+- Renames `MICROSECONDS_IN_A_MILLISECOND` to `MICROSECONDS_IN_MILLISECOND` (thanks [@simmo])
+- Renames `MILLISECONDS_IN_A_SECOND` to `MILLISECONDS_IN_SECOND` (thanks [@simmo])
+- Renames `NANOSECONDS_IN_A_MICROSECOND` to `NANOSECONDS_IN_MICROSECOND` (thanks [@simmo])
+
+### Fixed
+
+- Incorrect/missing documentation (thanks [@simmo])
+
 ## [1.2.0] - 2025-06-10
 
 ### Added
@@ -92,5 +102,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [@spyros-uk]: https://github.com/spyros-uk
 [1.1.1]: https://github.com/simmo/niobe/compare/1.1.1-beta.2...1.1.1
 [1.1.2]: https://github.com/simmo/niobe/compare/1.1.2-beta.0...1.1.2
-
 [1.2.0]: https://github.com/simmo/niobe/releases/tag/1.2.0
