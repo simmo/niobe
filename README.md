@@ -135,7 +135,7 @@ parseDuration('invalid', true);
 // => throws Error: "invalid" is not a valid duration
 ```
 
-#### `toParts(milliseconds: number): Parts`
+#### `msToParts(milliseconds: number): Parts`
 
 Converts a duration in milliseconds to a [Parts](#parts) object with properties for each time unit.
 
@@ -143,7 +143,7 @@ Converts a duration in milliseconds to a [Parts](#parts) object with properties 
 
 #### `Parts`
 
-Used in the [`toParts`](#topartsmilliseconds-number-parts) function, this type represents the parts of a duration.
+Used in the [`msToParts`](#mstopartsmilliseconds-number-parts) function, this type represents the parts of a duration.
 
 ```ts
 interface Parts {

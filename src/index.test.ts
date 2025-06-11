@@ -25,10 +25,10 @@ describe('api', () => {
 			  "microseconds": [Function],
 			  "milliseconds": [Function],
 			  "minutes": [Function],
+			  "msToParts": [Function],
 			  "nanoseconds": [Function],
 			  "parseDuration": [Function],
 			  "seconds": [Function],
-			  "toParts": [Function],
 			  "weeks": [Function],
 			}
 		`);

@@ -1,2 +1,2 @@
 export { parseDuration } from './parseDuration.js';
-export { toParts, type Parts } from './toParts.js';
+export { msToParts, type Parts } from './msToParts.js';

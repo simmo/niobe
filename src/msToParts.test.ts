@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { toParts } from './toParts.js';
+import { msToParts } from './msToParts.js';
 
-describe('toParts()', () => {
+describe('msToParts()', () => {
 	it('returns the correct parts for a positive duration', () => {
-		const result = toParts(766_606_500);
+		const result = msToParts(766_606_500);
 
 		expect(result).toEqual({
 			days: 1,
@@ -19,7 +19,7 @@ describe('toParts()', () => {
 	});
 
 	it('returns the correct parts for a negative duration', () => {
-		const result = toParts(-766_606_500);
+		const result = msToParts(-766_606_500);
 
 		expect(result).toEqual({
 			days: 1,
@@ -35,7 +35,7 @@ describe('toParts()', () => {
 	});
 
 	it('returns the correct parts for a positive duration with decimal places', () => {
-		const result = toParts(766_606_500.003002);
+		const result = msToParts(766_606_500.003002);
 
 		expect(result).toEqual({
 			days: 1,
@@ -51,7 +51,7 @@ describe('toParts()', () => {
 	});
 
 	it('returns the correct parts for a negative duration with decimal places', () => {
-		const result = toParts(-766_606_500.003002);
+		const result = msToParts(-766_606_500.003002);
 
 		expect(result).toEqual({
 			days: 1,

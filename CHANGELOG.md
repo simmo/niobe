@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking
 
+- Renames `toParts` to `msToParts` (thanks [@simmo])
 - Renames `MICROSECONDS_IN_A_MILLISECOND` to `MICROSECONDS_IN_MILLISECOND` (thanks [@simmo])
 - Renames `MILLISECONDS_IN_A_SECOND` to `MILLISECONDS_IN_SECOND` (thanks [@simmo])
 - Renames `NANOSECONDS_IN_A_MICROSECOND` to `NANOSECONDS_IN_MICROSECOND` (thanks [@simmo])

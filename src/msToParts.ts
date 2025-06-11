@@ -36,7 +36,7 @@ export interface Parts {
  * @returns An object with properties for each time unit
  */
 
-export const toParts = (ms: number): Parts => {
+export const msToParts = (ms: number): Parts => {
 	const absoluteMs = Math.abs(ms);
 
 	return {
