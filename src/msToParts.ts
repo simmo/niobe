@@ -16,18 +16,7 @@ import {
 	seconds,
 	weeks,
 } from './conversion.js';
-
-export interface Parts {
-	days: number;
-	hours: number;
-	isNegative: boolean;
-	nanoseconds: number;
-	microseconds: number;
-	milliseconds: number;
-	minutes: number;
-	seconds: number;
-	weeks: number;
-}
+import { Parts } from './interfaces/Parts.js';
 
 /**
  * Converts a duration in milliseconds to an object with properties for each time unit.

@@ -8,8 +8,6 @@ import {
 } from './conversion.js';
 import { UnitConverter } from './utils/createUnitConverter.js';
 
-type TimeUnit = 'ns' | 'μs' | 'ms' | 's' | 'm' | 'h' | 'd';
-
 const unitToConverterMap = {
 	ns: nanoseconds,
 	μs: microseconds,
@@ -19,6 +17,7 @@ const unitToConverterMap = {
 	h: hours,
 	d: days,
 } satisfies Record<TimeUnit, UnitConverter | null>;
+import { TimeUnit } from './types/TimeUnit.js';
 
 const regex = new RegExp(
 	`(\\d+(?:\\.\\d+)?)(${Object.keys(unitToConverterMap).join('|')})`,
