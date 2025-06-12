@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Renames `MILLISECONDS_IN_A_SECOND` to `MILLISECONDS_IN_SECOND` (thanks [@simmo])
 - Renames `NANOSECONDS_IN_A_MICROSECOND` to `NANOSECONDS_IN_MICROSECOND` (thanks [@simmo])
 
+### Added
+
+- `partsToMs` function to convert an object with time unit properties to milliseconds (thanks [@simmo])
+
 ### Fixed
 
 - Incorrect/missing documentation (thanks [@simmo])

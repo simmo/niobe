@@ -139,11 +139,15 @@ parseDuration('invalid', true);
 
 Converts a duration in milliseconds to a [Parts](#parts) object with properties for each time unit.
 
+#### `partsToMs(parts: Partial<Parts>): number`
+
+Converts a [Parts](#parts) object to duration in milliseconds.
+
 ### Types
 
 #### `Parts`
 
-Used in the [`msToParts`](#mstopartsmilliseconds-number-parts) function, this type represents the parts of a duration.
+Used in the [`msToParts`](#mstopartsmilliseconds-number-parts) and [`partsToMs`](#partstomsparts-partialparts-number) functions. This interface represents the parts of a duration.
 
 ```ts
 interface Parts {
