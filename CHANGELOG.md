@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `partsToMs` function to convert an object with time unit properties to milliseconds (thanks [@simmo])
+- `Parts` interface to represent the parts of a duration (thanks [@simmo])
+- `TimeUnit` type to represent the time unit strings used in the `parseDuration` function (thanks [@simmo])
 
 ### Fixed
 

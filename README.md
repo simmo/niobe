@@ -33,6 +33,8 @@ setTimeout(() => /* Do something */}, minutes(2) + seconds(30));
 
 Additionally, Niobe provides [utilities](#utilities) to parse durations, split them into their components and [convert](#conversion) between different time units. There is even a range of common [constants](#constants).
 
+Take a look at the [FAQs](#faqs) for more information, the [CHANGELOG](./CHANGELOG.md) for the latest changes or the [contribution guide](./CONTRIBUTING.md) if you want to get involved.
+
 ---
 
 ## Installation
@@ -144,6 +146,14 @@ Converts a duration in milliseconds to a [Parts](#parts) object with properties 
 Converts a [Parts](#parts) object to duration in milliseconds.
 
 ### Types
+
+#### `TimeUnit`
+
+This type represents the time unit strings used in the [`parseDuration`](#parsedurationduration-string-strict-boolean--false-number) function. It can be one of the following:
+
+```ts
+type TimeUnit = 'ns' | 'μs' | 'ms' | 's' | 'm' | 'h' | 'd' | 'w';
+```
 
 #### `Parts`
 

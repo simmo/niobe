@@ -6,7 +6,7 @@ import { partToConverterMap } from './utils/partToConverterMap.js';
 /**
  * Converts a Parts object to duration in milliseconds.
  *
- * @param parts An partial object with properties for each time unit
+ * @param parts A partial object with properties for each time unit
  * @returns The duration in milliseconds
  */
 
