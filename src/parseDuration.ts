@@ -1,23 +1,5 @@
-import {
-	days,
-	hours,
-	microseconds,
-	minutes,
-	nanoseconds,
-	seconds,
-} from './conversion.js';
-import { UnitConverter } from './utils/createUnitConverter.js';
-
-const unitToConverterMap = {
-	ns: nanoseconds,
-	μs: microseconds,
-	ms: null,
-	s: seconds,
-	m: minutes,
-	h: hours,
-	d: days,
-} satisfies Record<TimeUnit, UnitConverter | null>;
 import { TimeUnit } from './types/TimeUnit.js';
+import { unitToConverterMap } from './utils/unitToConverterMap.js';
 
 const regex = new RegExp(
 	`(\\d+(?:\\.\\d+)?)(${Object.keys(unitToConverterMap).join('|')})`,
@@ -66,10 +48,8 @@ export const parseDuration = (
 		const fn = unitToConverterMap[unit as TimeUnit];
 
 		if (fn !== undefined) {
-			const value = parseFloat(num);
-
 			total ??= 0;
-			total += fn === null ? value : fn(value);
+			total += fn(parseFloat(num));
 		}
 	}
 
