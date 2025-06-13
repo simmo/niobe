@@ -101,6 +101,19 @@ _[This seems pointless, why is it here?](#this-seems-pointless-why-is-it-here)_
 
 ### Utilities
 
+#### `clockToMs(clock: string): number`
+
+Converts a `hh:mm:ss.ms_μs_ns` string to milliseconds.
+
+- `hh` - Hours - Optional, optional leading zero
+- `mm` - Minutes - Optional, optional leading zero
+- `ss` - Seconds - Required, optional leading zero
+- `ms` - Milliseconds - Optional, optional trailing zeros
+- `μs` - Microseconds - Optional, optional trailing zeros
+- `ns` - Nanoseconds - Optional, optional trailing zeros
+
+Milliseconds, microseconds, and nanoseconds can be optionally separated by underscores, if not, you must provide padding.
+
 #### `parseDuration(duration: string, strict: boolean = false): number`
 
 Parses a duration string, returning milliseconds.

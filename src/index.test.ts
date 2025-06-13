@@ -20,6 +20,7 @@ describe('api', () => {
 			  "SECOND": 1000,
 			  "SECONDS_IN_MINUTE": 60,
 			  "WEEK": 604800000,
+			  "clockToMs": [Function],
 			  "days": [Function],
 			  "hours": [Function],
 			  "microseconds": [Function],
