@@ -114,6 +114,12 @@ Converts a `hh:mm:ss.ms_μs_ns` string to milliseconds.
 
 Milliseconds, microseconds, and nanoseconds can be optionally separated by underscores, if not, you must provide padding.
 
+#### `msToClock(milliseconds: number, options?: { separateDecimal = true }): string`
+
+Converts milliseconds to a string in the format 'hh:mm:ss' optionally suffixing '.ms_μs_ns' if there are any remaining milliseconds, microseconds or nanoseconds.
+
+`separateDecimal` - If true, milliseconds, microseconds, and nanoseconds will be separated by underscores. If false, they will be concatenated without separators.
+
 #### `parseDuration(duration: string, strict: boolean = false): number`
 
 Parses a duration string, returning milliseconds.

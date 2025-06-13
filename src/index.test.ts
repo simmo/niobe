@@ -26,6 +26,7 @@ describe('api', () => {
 			  "microseconds": [Function],
 			  "milliseconds": [Function],
 			  "minutes": [Function],
+			  "msToClock": [Function],
 			  "msToParts": [Function],
 			  "nanoseconds": [Function],
 			  "parseDuration": [Function],

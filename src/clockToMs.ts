@@ -1,3 +1,6 @@
+import { DECIMAL_SEPARATOR } from './constants/DecimalSeparator.js';
+import { DECIMAL_UNIT_SEPARATOR } from './constants/DecimalUnitSeparator.js';
+import { HMS_SEPARATOR } from './constants/HmsSeparator.js';
 import {
 	hours,
 	microseconds,
@@ -57,18 +60,21 @@ import {
  */
 
 export const clockToMs = (clock: string): number => {
-	const [time, fraction] = clock.split('.');
+	const [time, fraction] = clock.split(DECIMAL_SEPARATOR);
 	const [timeAbsolute, isNegative] = time.startsWith('-')
 		? [time.slice(1), true]
 		: [time, false];
-	const [s = 0, m = 0, h = 0] = timeAbsolute.split(':').map(Number).reverse();
+	const [s = 0, m = 0, h = 0] = timeAbsolute
+		.split(HMS_SEPARATOR)
+		.map(Number)
+		.reverse();
 
 	let millis = 0;
 	let micros = 0;
 	let nanos = 0;
 
 	if (fraction) {
-		const parts = fraction.split('_');
+		const parts = fraction.split(DECIMAL_UNIT_SEPARATOR);
 
 		if (parts.length === 1) {
 			const fractionStr = (parts[0] + '000000000').slice(0, 9);

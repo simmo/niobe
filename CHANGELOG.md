@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `msToClock` function to convert milliseconds to a clock string (thanks [@simmo])
 - `clockToMs` function to convert a clock string to milliseconds (thanks [@simmo])
 - `partsToMs` function to convert an object with time unit properties to milliseconds (thanks [@simmo])
 - `Parts` interface to represent the parts of a duration (thanks [@simmo])

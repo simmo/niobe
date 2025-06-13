@@ -35,10 +35,10 @@ export const msToParts = (ms: number): Parts => {
 		nanoseconds: Math.round(
 			nanoseconds.from(absoluteMs) % NANOSECONDS_IN_MICROSECOND,
 		),
-		microseconds: Math.round(
+		microseconds: Math.floor(
 			microseconds.from(absoluteMs) % MICROSECONDS_IN_MILLISECOND,
 		),
-		milliseconds: Math.round(absoluteMs % MILLISECONDS_IN_SECOND),
+		milliseconds: Math.floor(absoluteMs % MILLISECONDS_IN_SECOND),
 		minutes: Math.floor(minutes.from(absoluteMs) % MINUTES_IN_HOUR),
 		seconds: Math.floor(seconds.from(absoluteMs) % SECONDS_IN_MINUTE),
 		weeks: Math.floor(weeks.from(absoluteMs)),
