@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-06-14
+
 ### Breaking
 
 - Renames `toParts` to `msToParts`
@@ -104,7 +106,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [#3]: https://github.com/simmo/niobe/pull/3
 [@spyros-uk]: https://github.com/spyros-uk
-[unreleased]: https://github.com/simmo/niobe/compare/1.2.0...HEAD
+[unreleased]: https://github.com/simmo/niobe/compare/2.0.0...HEAD
 [1.0.0]: https://github.com/simmo/niobe/compare/0.0.2...1.0.0
 [0.0.2]: https://github.com/simmo/niobe/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/simmo/niobe/compare/f3751e...0.0.1
@@ -112,3 +114,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.1.1]: https://github.com/simmo/niobe/compare/1.1.1-beta.2...1.1.1
 [1.1.2]: https://github.com/simmo/niobe/compare/1.1.2-beta.0...1.1.2
 [1.2.0]: https://github.com/simmo/niobe/releases/tag/1.2.0
+
+[2.0.0]: https://github.com/simmo/niobe/compare/2.0.0-beta.0...2.0.0
