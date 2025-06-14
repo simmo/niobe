@@ -50,19 +50,19 @@ export const WEEK = 604_800_000;
  * Number of nanoseconds in a microsecond.
  */
 
-export const NANOSECONDS_IN_A_MICROSECOND = 1_000;
+export const NANOSECONDS_IN_MICROSECOND = 1_000;
 
 /**
  * Number of microseconds in a millisecond.
  */
 
-export const MICROSECONDS_IN_A_MILLISECOND = 1_000;
+export const MICROSECONDS_IN_MILLISECOND = 1_000;
 
 /**
  * Number of milliseconds in a second.
  */
 
-export const MILLISECONDS_IN_A_SECOND = 1_000;
+export const MILLISECONDS_IN_SECOND = 1_000;
 
 /**
  * Number of seconds in a minute.

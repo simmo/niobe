@@ -1,3 +1,5 @@
+import { floatOperation } from './floatOperation.js';
+
 export type UnitConverter = {
 	/**
 	 * Converts the number of units to milliseconds.
@@ -27,9 +29,17 @@ export type UnitConverter = {
  */
 
 export const createUnitConverter = (unit: number): UnitConverter => {
-	const fn = (amount: number) => amount * unit;
+	const fn = (amount: number) =>
+		floatOperation(
+			[unit],
+			([normalisedUnit], factor) => (amount * normalisedUnit) / factor,
+		);
 
-	fn.from = (ms: number) => ms / unit;
+	fn.from = (ms: number) =>
+		floatOperation(
+			[ms, unit],
+			([normalisedMs, normalisedUnit]) => normalisedMs / normalisedUnit,
+		);
 
 	return fn;
 };

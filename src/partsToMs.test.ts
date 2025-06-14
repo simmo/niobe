@@ -1,46 +1,38 @@
 import { describe, expect, it } from 'vitest';
-import { toParts } from './toParts.js';
+import { partsToMs } from './partsToMs.js';
 
-describe('toParts()', () => {
+describe('partsToMs()', () => {
 	it('returns the correct parts for a positive duration', () => {
-		const result = toParts(766_606_500);
-
-		expect(result).toEqual({
+		const result = partsToMs({
 			days: 1,
 			hours: 20,
-			isNegative: false,
-			microseconds: 0,
 			milliseconds: 500,
 			minutes: 56,
-			nanoseconds: 0,
 			seconds: 46,
 			weeks: 1,
 		});
+
+		expect(result).toEqual(766_606_500);
 	});
 
 	it('returns the correct parts for a negative duration', () => {
-		const result = toParts(-766_606_500);
-
-		expect(result).toEqual({
+		const result = partsToMs({
 			days: 1,
 			hours: 20,
 			isNegative: true,
-			microseconds: 0,
 			milliseconds: 500,
 			minutes: 56,
-			nanoseconds: 0,
 			seconds: 46,
 			weeks: 1,
 		});
+
+		expect(result).toEqual(-766_606_500);
 	});
 
 	it('returns the correct parts for a positive duration with decimal places', () => {
-		const result = toParts(766_606_500.003002);
-
-		expect(result).toEqual({
+		const result = partsToMs({
 			days: 1,
 			hours: 20,
-			isNegative: false,
 			microseconds: 3,
 			milliseconds: 500,
 			minutes: 56,
@@ -48,12 +40,12 @@ describe('toParts()', () => {
 			seconds: 46,
 			weeks: 1,
 		});
+
+		expect(result).toEqual(766_606_500.003002);
 	});
 
 	it('returns the correct parts for a negative duration with decimal places', () => {
-		const result = toParts(-766_606_500.003002);
-
-		expect(result).toEqual({
+		const result = partsToMs({
 			days: 1,
 			hours: 20,
 			isNegative: true,
@@ -64,5 +56,7 @@ describe('toParts()', () => {
 			seconds: 46,
 			weeks: 1,
 		});
+
+		expect(result).toEqual(-766_606_500.003002);
 	});
 });

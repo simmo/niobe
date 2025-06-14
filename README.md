@@ -33,6 +33,8 @@ setTimeout(() => /* Do something */}, minutes(2) + seconds(30));
 
 Additionally, Niobe provides [utilities](#utilities) to parse durations, split them into their components and [convert](#conversion) between different time units. There is even a range of common [constants](#constants).
 
+Take a look at the [FAQs](#faqs) for more information, the [CHANGELOG](./CHANGELOG.md) for the latest changes or the [contribution guide](./CONTRIBUTING.md) if you want to get involved.
+
 ---
 
 ## Installation
@@ -99,6 +101,25 @@ _[This seems pointless, why is it here?](#this-seems-pointless-why-is-it-here)_
 
 ### Utilities
 
+#### `clockToMs(clock: string): number`
+
+Converts a `hh:mm:ss.ms_μs_ns` string to milliseconds.
+
+- `hh` - Hours - Optional, optional leading zero
+- `mm` - Minutes - Optional, optional leading zero
+- `ss` - Seconds - Required, optional leading zero
+- `ms` - Milliseconds - Optional, optional trailing zeros
+- `μs` - Microseconds - Optional, optional trailing zeros
+- `ns` - Nanoseconds - Optional, optional trailing zeros
+
+Milliseconds, microseconds, and nanoseconds can be optionally separated by underscores, if not, you must provide padding.
+
+#### `msToClock(milliseconds: number, options?: { separateDecimal = true }): string`
+
+Converts milliseconds to a string in the format 'hh:mm:ss' optionally suffixing '.ms_μs_ns' if there are any remaining milliseconds, microseconds or nanoseconds.
+
+`separateDecimal` - If true, milliseconds, microseconds, and nanoseconds will be separated by underscores. If false, they will be concatenated without separators.
+
 #### `parseDuration(duration: string, strict: boolean = false): number`
 
 Parses a duration string, returning milliseconds.
@@ -113,6 +134,9 @@ parseDuration('2m 1s');
 
 parseDuration('1h 2m 3s');
 // => 3_723_004
+
+parseDuration('1d 2h 3m 4s 5ms 6μs 7ns');
+// => 93_784_005.006_007
 ```
 
 ###### Invalid format - Non-strict (Default)
@@ -132,13 +156,53 @@ parseDuration('invalid', true);
 // => throws Error: "invalid" is not a valid duration
 ```
 
-#### `toParts(milliseconds: number): { days: number, hours: number, minutes: number, seconds: number, milliseconds: number }`
+#### `msToParts(milliseconds: number): Parts`
 
-Converts a duration in milliseconds to an object with properties for each time unit.
+Converts a duration in milliseconds to a [Parts](#parts) object with properties for each time unit.
+
+#### `partsToMs(parts: Partial<Parts>): number`
+
+Converts a [Parts](#parts) object to duration in milliseconds.
+
+### Types
+
+#### `TimeUnit`
+
+This type represents the time unit strings used in the [`parseDuration`](#parsedurationduration-string-strict-boolean--false-number) function. It can be one of the following:
+
+```ts
+type TimeUnit = 'ns' | 'μs' | 'ms' | 's' | 'm' | 'h' | 'd' | 'w';
+```
+
+#### `Parts`
+
+Used in the [`msToParts`](#mstopartsmilliseconds-number-parts) and [`partsToMs`](#partstomsparts-partialparts-number) functions. This interface represents the parts of a duration.
+
+```ts
+interface Parts {
+	days: number;
+	hours: number;
+	isNegative: boolean;
+	nanoseconds: number;
+	microseconds: number;
+	milliseconds: number;
+	minutes: number;
+	seconds: number;
+	weeks: number;
+}
+```
 
 ### Constants
 
 These constants are used to represent the number of milliseconds in each time unit.
+
+#### `NANOSECOND`
+
+One nanosecond in milliseconds.
+
+#### `MICROSECOND`
+
+One microsecond in milliseconds.
 
 #### `MILLISECOND`
 
@@ -165,6 +229,14 @@ One day in milliseconds.
 #### `WEEK`
 
 One week in milliseconds.
+
+#### `NANOSECONDS_IN_MICROSECOND`
+
+Number of nanoseconds in a second.
+
+#### `MICROSECONDS_IN_MILLISECOND`
+
+Number of microseconds in a second.
 
 #### `MILLISECONDS_IN_SECOND`
 
