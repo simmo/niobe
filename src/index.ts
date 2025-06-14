@@ -14,10 +14,15 @@ export * from './conversion.js';
  * Utilities
  */
 
-export * from './utilities.js';
+export { clockToMs } from './clockToMs.js';
+export { msToClock } from './msToClock.js';
+export { msToParts } from './msToParts.js';
+export { parseDuration } from './parseDuration.js';
+export { partsToMs } from './partsToMs.js';
 
 /**
  * Types
  */
 
-export * from './types.js';
+export type { Parts } from './interfaces/Parts.js';
+export type { TimeUnit } from './types/TimeUnit.js';
