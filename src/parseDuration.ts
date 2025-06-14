@@ -1,4 +1,4 @@
-import { TimeUnit } from './types/TimeUnit.js';
+import { type TimeUnit } from './types/TimeUnit.js';
 import { unitToConverterMap } from './utils/unitToConverterMap.js';
 
 const regex = new RegExp(

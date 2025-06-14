@@ -8,8 +8,8 @@ import {
 	seconds,
 	weeks,
 } from '../conversion.js';
-import { TimeUnit } from '../types/TimeUnit.js';
-import { UnitConverter } from './createUnitConverter.js';
+import { type TimeUnit } from '../types/TimeUnit.js';
+import { type UnitConverter } from './createUnitConverter.js';
 
 export const unitToConverterMap = {
 	ns: nanoseconds,

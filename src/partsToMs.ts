@@ -1,4 +1,4 @@
-import { Parts } from './interfaces/Parts.js';
+import { type Parts } from './interfaces/Parts.js';
 import { UnitConverter } from './utils/createUnitConverter.js';
 import { floatOperation } from './utils/floatOperation.js';
 import { partToConverterMap } from './utils/partToConverterMap.js';

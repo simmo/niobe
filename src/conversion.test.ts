@@ -9,7 +9,7 @@ import {
 	seconds,
 	weeks,
 } from './conversion.js';
-import { UnitConverter } from './utils/createUnitConverter.js';
+import { type UnitConverter } from './utils/createUnitConverter.js';
 
 const testCases: [
 	unit: string,

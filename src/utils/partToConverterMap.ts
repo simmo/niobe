@@ -1,5 +1,4 @@
-import { Parts } from '../types.js';
-import { UnitConverter } from './createUnitConverter.js';
+import { type UnitConverter } from './createUnitConverter.js';
 import {
 	days,
 	hours,
@@ -10,6 +9,7 @@ import {
 	seconds,
 	weeks,
 } from '../conversion.js';
+import { type Parts } from '../interfaces/Parts.js';
 
 export const partToConverterMap = {
 	nanoseconds,

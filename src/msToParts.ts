@@ -16,7 +16,7 @@ import {
 	seconds,
 	weeks,
 } from './conversion.js';
-import { Parts } from './interfaces/Parts.js';
+import { type Parts } from './interfaces/Parts.js';
 
 /**
  * Converts a duration in milliseconds to an object with properties for each time unit.
