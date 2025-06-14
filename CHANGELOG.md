@@ -9,52 +9,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking
 
-- Renames `toParts` to `msToParts` (thanks [@simmo])
-- Renames `MICROSECONDS_IN_A_MILLISECOND` to `MICROSECONDS_IN_MILLISECOND` (thanks [@simmo])
-- Renames `MILLISECONDS_IN_A_SECOND` to `MILLISECONDS_IN_SECOND` (thanks [@simmo])
-- Renames `NANOSECONDS_IN_A_MICROSECOND` to `NANOSECONDS_IN_MICROSECOND` (thanks [@simmo])
+- Renames `toParts` to `msToParts`
+- Renames `MICROSECONDS_IN_A_MILLISECOND` to `MICROSECONDS_IN_MILLISECOND`
+- Renames `MILLISECONDS_IN_A_SECOND` to `MILLISECONDS_IN_SECOND`
+- Renames `NANOSECONDS_IN_A_MICROSECOND` to `NANOSECONDS_IN_MICROSECOND`
 
 ### Added
 
-- `msToClock` function to convert milliseconds to a clock string (thanks [@simmo])
-- `clockToMs` function to convert a clock string to milliseconds (thanks [@simmo])
-- `partsToMs` function to convert an object with time unit properties to milliseconds (thanks [@simmo])
-- `Parts` interface to represent the parts of a duration (thanks [@simmo])
-- `TimeUnit` type to represent the time unit strings used in the `parseDuration` function (thanks [@simmo])
+- `msToClock` function to convert milliseconds to a clock string
+- `clockToMs` function to convert a clock string to milliseconds
+- `partsToMs` function to convert an object with time unit properties to milliseconds
+- `Parts` interface to represent the parts of a duration
+- `TimeUnit` type to represent the time unit strings used in the `parseDuration` function
 
 ### Fixed
 
-- Incorrect/missing documentation (thanks [@simmo])
-- Floating point conversion error (thanks [@simmo])
+- Incorrect/missing documentation
+- Floating point conversion error
 
 ## [1.2.0] - 2025-06-10
 
 ### Added
 
-- Code coverage check (thanks [@simmo])
-- Microseconds and nanoseconds support (thanks [@simmo])
+- Code coverage check
+- Microseconds and nanoseconds support
 
 ## [1.1.2] - 2025-05-06
 
 ### Changed
 
-- Workflow adjustments (thanks [@simmo])
+- Workflow adjustments
 
 ### Fixed
 
-- Missing package files path (thanks [@simmo])
+- Missing package files path
 
 ## [1.1.1] - 2025-05-05
 
 ### Added
 
-- Contributing guide (thanks [@simmo])
-- Security policy (thanks [@simmo])
-- PR + issue templates (thanks [@simmo])
+- Contributing guide
+- Security policy
+- PR + issue templates
 
 ### Changed
 
-- README adjustments (thanks [@simmo])
+- README adjustments
 
 ### Fixed
 
@@ -64,52 +64,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `weeks` unit converter (thanks [@simmo])
-- `WEEK` and `DAYS_IN_WEEK` constants (thanks [@simmo])
-- `weeks` to `toParts` function output (thanks [@simmo])
+- `weeks` unit converter
+- `WEEK` and `DAYS_IN_WEEK` constants
+- `weeks` to `toParts` function output
 
 ### Changed
 
-- Updated dev dependencies (thanks [@simmo])
-- Output modules in distribution (thanks [@simmo])
+- Updated dev dependencies
+- Output modules in distribution
 
 ### Fixes
 
-- README typos (thanks [@simmo])
-- Clean up (thanks [@simmo])
-- Changelog URLs (thanks [@simmo])
+- README typos
+- Clean up
+- Changelog URLs
 
 ## [1.0.0] - 2025-05-05
 
 ### Changed
 
-- Update readme (thanks [@simmo])
+- Update readme
 
 ## [0.0.2] - 2025-05-05
 
 ### Fixed
 
-- Update incorrect documentation (thanks [@simmo])
-- Update README (thanks [@simmo])
+- Update incorrect documentation
+- Update README
 
 ## [0.0.1] - 2025-05-04
 
 ### Added
 
-- Initial setup (thanks [@simmo])
-- Constants for time units (thanks [@simmo])
-- Unit converter functions for `days`, `hours`, `minutes`, `seconds` and `milliseconds` (thanks [@simmo])
-- `toParts` function to convert milliseconds to an object with properties for each time unit (thanks [@simmo])
-- `parseDuration` function to parse a duration string into milliseconds (thanks [@simmo])
+- Initial setup
+- Constants for time units
+- Unit converter functions for `days`, `hours`, `minutes`, `seconds` and `milliseconds`
+- `toParts` function to convert milliseconds to an object with properties for each time unit
+- `parseDuration` function to parse a duration string into milliseconds
 
 [#3]: https://github.com/simmo/niobe/pull/3
+[@spyros-uk]: https://github.com/spyros-uk
 [unreleased]: https://github.com/simmo/niobe/compare/1.2.0...HEAD
 [1.0.0]: https://github.com/simmo/niobe/compare/0.0.2...1.0.0
 [0.0.2]: https://github.com/simmo/niobe/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/simmo/niobe/compare/f3751e...0.0.1
 [1.1.0]: https://github.com/simmo/niobe/compare/1.0.1-beta.1...1.1.0
-[@simmo]: https://github.com/simmo
-[@spyros-uk]: https://github.com/spyros-uk
 [1.1.1]: https://github.com/simmo/niobe/compare/1.1.1-beta.2...1.1.1
 [1.1.2]: https://github.com/simmo/niobe/compare/1.1.2-beta.0...1.1.2
 [1.2.0]: https://github.com/simmo/niobe/releases/tag/1.2.0
