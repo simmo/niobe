@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Linting with oxlint and dead-code checks with fallow, both run in CI
+- Agent guide (`AGENTS.md`) and Claude Code hooks that format, lint and check the changelog
+
+### Changed
+
+- Formatting uses oxfmt instead of Prettier
+
 ## [2.0.0] - 2025-06-14
 
 ### Breaking
