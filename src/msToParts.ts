@@ -7,15 +7,7 @@ import {
 	NANOSECONDS_IN_MICROSECOND,
 	SECONDS_IN_MINUTE,
 } from './constant.js';
-import {
-	days,
-	hours,
-	microseconds,
-	minutes,
-	nanoseconds,
-	seconds,
-	weeks,
-} from './conversion.js';
+import { days, hours, microseconds, minutes, nanoseconds, seconds, weeks } from './conversion.js';
 import { type Parts } from './interfaces/Parts.js';
 
 /**
@@ -32,12 +24,8 @@ export const msToParts = (ms: number): Parts => {
 		days: Math.floor(days.from(absoluteMs) % DAYS_IN_WEEK),
 		hours: Math.floor(hours.from(absoluteMs) % HOURS_IN_DAY),
 		isNegative: ms < 0,
-		nanoseconds: Math.round(
-			nanoseconds.from(absoluteMs) % NANOSECONDS_IN_MICROSECOND,
-		),
-		microseconds: Math.floor(
-			microseconds.from(absoluteMs) % MICROSECONDS_IN_MILLISECOND,
-		),
+		nanoseconds: Math.round(nanoseconds.from(absoluteMs) % NANOSECONDS_IN_MICROSECOND),
+		microseconds: Math.floor(microseconds.from(absoluteMs) % MICROSECONDS_IN_MILLISECOND),
 		milliseconds: Math.floor(absoluteMs % MILLISECONDS_IN_SECOND),
 		minutes: Math.floor(minutes.from(absoluteMs) % MINUTES_IN_HOUR),
 		seconds: Math.floor(seconds.from(absoluteMs) % SECONDS_IN_MINUTE),

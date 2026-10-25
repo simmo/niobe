@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { floatOperation } from './floatOperation.js';
 
 describe('floatOperation()', () => {

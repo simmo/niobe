@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { padLeadingZero } from './padLeadingZero.js';
 
 describe('padLeadingZero()', () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { msToClock } from './msToClock.js';
 import { DECIMAL_UNIT_SEPARATOR } from './constants/DecimalUnitSeparator.js';
+import { msToClock } from './msToClock.js';
 
 const testCases = [
 	['00:00:01', 1_000],
@@ -24,14 +24,11 @@ describe('msToClock()', () => {
 	])('%s time', (_, isNegative) => {
 		const [offset, sign] = isNegative ? [-1, '-'] : [1, ''];
 
-		it.each(testCases)(
-			`returns ${sign}%s for ${sign}%s`,
-			(clock, milliseconds) => {
-				const output = msToClock(milliseconds * offset);
+		it.each(testCases)(`returns ${sign}%s for ${sign}%s`, (clock, milliseconds) => {
+			const output = msToClock(milliseconds * offset);
 
-				expect(output).toBe(`${sign}${clock}`);
-			},
-		);
+			expect(output).toBe(`${sign}${clock}`);
+		});
 
 		it.each(testCases)(
 			`returns ${sign}%s for ${sign}%s without decimal separators`,
@@ -40,9 +37,7 @@ describe('msToClock()', () => {
 					separateDecimal: false,
 				});
 
-				expect(output).toBe(
-					`${sign}${clock.replaceAll(DECIMAL_UNIT_SEPARATOR, '')}`,
-				);
+				expect(output).toBe(`${sign}${clock.replaceAll(DECIMAL_UNIT_SEPARATOR, '')}`);
 			},
 		);
 	});

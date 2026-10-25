@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import {
 	days,
 	hours,
@@ -11,11 +12,7 @@ import {
 } from './conversion.js';
 import { type UnitConverter } from './utils/createUnitConverter.js';
 
-const testCases: [
-	unit: string,
-	fn: UnitConverter,
-	inputs: [amount: number, ms: number][],
-][] = [
+const testCases: [unit: string, fn: UnitConverter, inputs: [amount: number, ms: number][]][] = [
 	[
 		'nanoseconds',
 		nanoseconds,
@@ -115,9 +112,7 @@ describe('conversion', () => {
 
 	it.each(testCases)('returns %s from milliseconds', (_, fn, inputs) => {
 		inputs.forEach(([amount, milliseconds]) => {
-			expect(fn.from(milliseconds), `${milliseconds}ms >>> ${amount}`).toBe(
-				amount,
-			);
+			expect(fn.from(milliseconds), `${milliseconds}ms >>> ${amount}`).toBe(amount);
 		});
 	});
 });

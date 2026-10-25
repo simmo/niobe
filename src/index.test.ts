@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import * as api from './index.js';
 
 describe('api', () => {

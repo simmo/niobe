@@ -10,23 +10,17 @@ import { partToConverterMap } from './utils/partToConverterMap.js';
  * @returns The duration in milliseconds
  */
 
-export const partsToMs = ({
-	isNegative = false,
-	...parts
-}: Partial<Parts>): number => {
-	const convertedValues = Object.entries(parts).reduce<number[]>(
-		(acc, [key, value]) => {
-			if (typeof value === 'number' && !isNaN(value) && value >= 0) {
-				const unitConverter: UnitConverter | undefined =
-					partToConverterMap[key as keyof typeof partToConverterMap];
+export const partsToMs = ({ isNegative = false, ...parts }: Partial<Parts>): number => {
+	const convertedValues = Object.entries(parts).reduce<number[]>((acc, [key, value]) => {
+		if (typeof value === 'number' && !isNaN(value) && value >= 0) {
+			const unitConverter: UnitConverter | undefined =
+				partToConverterMap[key as keyof typeof partToConverterMap];
 
-				if (unitConverter) acc.push(unitConverter(value));
-			}
+			if (unitConverter) acc.push(unitConverter(value));
+		}
 
-			return acc;
-		},
-		[],
-	);
+		return acc;
+	}, []);
 
 	const result = floatOperation(
 		convertedValues,

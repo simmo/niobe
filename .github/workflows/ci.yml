@@ -38,10 +38,13 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Format
-        run: npm run format
+        run: npm run format:check
 
-      # - name: Lint
-      #   run: npm run lint
+      - name: Lint
+        run: npm run lint
+
+      - name: Dead Code
+        run: npm run dead-code
 
   prerelease:
     name: Prerelease

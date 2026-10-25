@@ -114,5 +114,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.1.1]: https://github.com/simmo/niobe/compare/1.1.1-beta.2...1.1.1
 [1.1.2]: https://github.com/simmo/niobe/compare/1.1.2-beta.0...1.1.2
 [1.2.0]: https://github.com/simmo/niobe/releases/tag/1.2.0
-
 [2.0.0]: https://github.com/simmo/niobe/compare/2.0.0-beta.0...2.0.0
