@@ -1,0 +1,18 @@
+{
+	// The theme runs in the browser, so it gets the DOM types; the root config (Node code,
+	// including `src`) doesn't, so browser globals can't slip into the library.
+	"extends": "../../../tsconfig.json",
+	"compilerOptions": {
+		"lib": [
+			"es2024",
+			"ESNext.Array",
+			"ESNext.Collection",
+			"ESNext.Iterator",
+			"ESNext.Promise",
+			"dom",
+			"dom.iterable"
+		]
+	},
+	"include": ["./**/*"],
+	"exclude": []
+}

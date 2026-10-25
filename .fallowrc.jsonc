@@ -4,4 +4,7 @@
 	"typeAware": {
 		"enabled": true,
 	},
+	// Imported by the docs theme, which fallow counts as production code. The docs site is
+	// only built in CI, so these stay dev dependencies.
+	"ignoreDependencies": ["@shikijs/vitepress-twoslash", "vitepress-plugin-llms", "vue"],
 }

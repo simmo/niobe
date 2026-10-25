@@ -11,31 +11,21 @@
 
 ---
 
-## The Problem
-
-How often do you write code like this?
+**Niobe** gives you a simple, readable way to write durations. Instead of this:
 
 ```ts
-setTimeout(() => /* Do something */, 1_000 * 60 * 2.5);
+setTimeout(refresh, 1_000 * 60 * 2.5);
 ```
 
-It is hard to understand what `1_000 * 60 * 2.5` means at first glance, although we get used to seeing common durations in our projects, there is an additional cognitive load when reading and writing code like this. The alternative is to create constants but when you have multiple engineers working on a project, it can be hard to keep track of what is in use, you get different naming conventions and you may end up with multiple constants for the same thing.
-
-## The Solution
-
-**Niobe** provides a simple, unified, human readable way to provide durations. The same duration can be expressed as:
+write this:
 
 ```ts
 import { minutes, seconds } from 'niobe';
 
-setTimeout(() => /* Do something */}, minutes(2) + seconds(30));
+setTimeout(refresh, minutes(2) + seconds(30));
 ```
 
-Additionally, Niobe provides [utilities](#utilities) to parse durations, split them into their components and [convert](#conversion) between different time units. There is even a range of common [constants](#constants).
-
-Take a look at the [FAQs](#faqs) for more information, the [CHANGELOG](./CHANGELOG.md) for the latest changes or the [contribution guide](./CONTRIBUTING.md) if you want to get involved.
-
----
+Niobe also converts milliseconds back to any unit, parses strings like `'1h 30m'`, reads and writes clock strings like `'01:30:00'`, and splits durations into their parts.
 
 ## Installation
 
@@ -43,238 +33,11 @@ Take a look at the [FAQs](#faqs) for more information, the [CHANGELOG](./CHANGEL
 npm i niobe
 ```
 
-## API
+## Documentation
 
-### Conversion
+Guides and the full API reference are at **[simmo.github.io/niobe](https://simmo.github.io/niobe/)**.
 
-#### `weeks(amount: number): number`
-
-Converts between weeks and milliseconds.
-
-#### `days(amount: number): number`
-
-Converts between days and milliseconds.
-
-#### `hours(amount: number): number`
-
-Converts between hours and milliseconds.
-
-#### `minutes(amount: number): number`
-
-Converts between minutes and milliseconds.
-
-#### `seconds(amount: number): number`
-
-Converts between seconds and milliseconds.
-
-#### `milliseconds(amount: number): number`
-
-Converts between milliseconds and milliseconds.
-
-_[This seems pointless, why is it here?](#this-seems-pointless-why-is-it-here)_
-
-#### `weeks.from(ms: number): number`
-
-Converts between milliseconds and weeks.
-
-#### `days.from(ms: number): number`
-
-Converts between milliseconds and days.
-
-#### `hours.from(ms: number): number`
-
-Converts between milliseconds and hours.
-
-#### `minutes.from(ms: number): number`
-
-Converts between milliseconds and minutes.
-
-#### `seconds.from(ms: number): number`
-
-Converts between milliseconds and seconds.
-
-#### `milliseconds.from(ms: number): number`
-
-Converts between milliseconds and milliseconds.
-
-_[This seems pointless, why is it here?](#this-seems-pointless-why-is-it-here)_
-
-### Utilities
-
-#### `clockToMs(clock: string): number`
-
-Converts a `hh:mm:ss.ms_μs_ns` string to milliseconds.
-
-- `hh` - Hours - Optional, optional leading zero
-- `mm` - Minutes - Optional, optional leading zero
-- `ss` - Seconds - Required, optional leading zero
-- `ms` - Milliseconds - Optional, optional trailing zeros
-- `μs` - Microseconds - Optional, optional trailing zeros
-- `ns` - Nanoseconds - Optional, optional trailing zeros
-
-Milliseconds, microseconds, and nanoseconds can be optionally separated by underscores, if not, you must provide padding.
-
-#### `msToClock(milliseconds: number, options?: { separateDecimal = true }): string`
-
-Converts milliseconds to a string in the format 'hh:mm:ss' optionally suffixing '.ms_μs_ns' if there are any remaining milliseconds, microseconds or nanoseconds.
-
-`separateDecimal` - If true, milliseconds, microseconds, and nanoseconds will be separated by underscores. If false, they will be concatenated without separators.
-
-#### `parseDuration(duration: string, strict: boolean = false): number`
-
-Parses a duration string, returning milliseconds.
-
-##### Usage
-
-###### Valid formats
-
-```ts
-parseDuration('2m 1s');
-// => 121_000
-
-parseDuration('1h 2m 3s');
-// => 3_723_004
-
-parseDuration('1d 2h 3m 4s 5ms 6μs 7ns');
-// => 93_784_005.006_007
-```
-
-###### Invalid format - Non-strict (Default)
-
-```ts
-parseDuration('invalid');
-// => 0
-
-parseDuration('invalid', false);
-// => 0
-```
-
-###### Invalid format - Strict
-
-```ts
-parseDuration('invalid', true);
-// => throws Error: "invalid" is not a valid duration
-```
-
-#### `msToParts(milliseconds: number): Parts`
-
-Converts a duration in milliseconds to a [Parts](#parts) object with properties for each time unit.
-
-#### `partsToMs(parts: Partial<Parts>): number`
-
-Converts a [Parts](#parts) object to duration in milliseconds.
-
-### Types
-
-#### `TimeUnit`
-
-This type represents the time unit strings used in the [`parseDuration`](#parsedurationduration-string-strict-boolean--false-number) function. It can be one of the following:
-
-```ts
-type TimeUnit = 'ns' | 'μs' | 'ms' | 's' | 'm' | 'h' | 'd' | 'w';
-```
-
-#### `Parts`
-
-Used in the [`msToParts`](#mstopartsmilliseconds-number-parts) and [`partsToMs`](#partstomsparts-partialparts-number) functions. This interface represents the parts of a duration.
-
-```ts
-interface Parts {
-	days: number;
-	hours: number;
-	isNegative: boolean;
-	nanoseconds: number;
-	microseconds: number;
-	milliseconds: number;
-	minutes: number;
-	seconds: number;
-	weeks: number;
-}
-```
-
-### Constants
-
-These constants are used to represent the number of milliseconds in each time unit.
-
-#### `NANOSECOND`
-
-One nanosecond in milliseconds.
-
-#### `MICROSECOND`
-
-One microsecond in milliseconds.
-
-#### `MILLISECOND`
-
-One millisecond.
-
-_[This seems pointless, why is it here?](#this-seems-pointless-why-is-it-here)_
-
-#### `SECOND`
-
-One second in milliseconds.
-
-#### `MINUTE`
-
-One minute in milliseconds.
-
-#### `HOUR`
-
-One hour in milliseconds.
-
-#### `DAY`
-
-One day in milliseconds.
-
-#### `WEEK`
-
-One week in milliseconds.
-
-#### `NANOSECONDS_IN_MICROSECOND`
-
-Number of nanoseconds in a second.
-
-#### `MICROSECONDS_IN_MILLISECOND`
-
-Number of microseconds in a second.
-
-#### `MILLISECONDS_IN_SECOND`
-
-Number of milliseconds in a second.
-
-#### `SECONDS_IN_MINUTE`
-
-Number of seconds in a minute.
-
-#### `MINUTES_IN_HOUR`
-
-Number of minutes in an hour.
-
-#### `HOURS_IN_DAY`
-
-Number of hours in a day.
-
-#### `DAYS_IN_WEEK`
-
-Number of days in a week.
-
----
-
-## FAQs
-
-<details>
-<summary id="why-niobe">
-Why is it called Niobe?
-</summary>
-Naming things is hard! Most package names are taken so my approach is often something random. In this instance Niobe is a reference to a character in the Matrix films.
-</details>
-
-<details>
-<summary id="this-seems-pointless-why-is-it-here">
-"This seems pointless, why is it here?"
-</summary>
-There are several components in the API that are no-ops, meaning they don't actually do anything. For example, the `milliseconds` function simply returns the input value. This is included for completeness and to match the other functions, but is not typically used in practice, as milliseconds are already in milliseconds. However, it can be useful for consistency in the API or maybe you need to do something where you conditionally switch between functions.
-</details>
+See the [changelog](./CHANGELOG.md) for the latest changes, or the [contribution guide](./CONTRIBUTING.md) if you want to get involved.
 
 ---
 

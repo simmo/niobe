@@ -38,6 +38,8 @@ export default defineConfig([
 			json(),
 			typescript({
 				filterRoot: false,
+				// Only the library: the docs site and scripts would move the declarations' root.
+				include: ['**/src/**/*.ts'],
 				exclude: ['**/*.{config,test}.ts'],
 				compilerOptions,
 			}),

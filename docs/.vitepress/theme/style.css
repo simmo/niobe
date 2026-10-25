@@ -1,0 +1,234 @@
+/* Brand colours from the logo's accent (#28c6e4), darkened on light backgrounds so text and
+   buttons stay legible. */
+:root {
+	--vp-c-brand-1: #0a7f96;
+	--vp-c-brand-2: #08738a;
+	--vp-c-brand-3: #1497b2;
+	--vp-c-brand-soft: rgba(40, 198, 228, 0.14);
+
+	--vp-home-hero-name-color: transparent;
+	--vp-home-hero-name-background: linear-gradient(120deg, #1497b2 30%, #28c6e4);
+}
+
+.dark {
+	--vp-c-brand-1: #5fd6ec;
+	--vp-c-brand-2: #28c6e4;
+	--vp-c-brand-3: #1497b2;
+	--vp-c-brand-soft: rgba(40, 198, 228, 0.16);
+}
+
+/* The logo is a wordmark, so it replaces the site title. */
+.VPNavBarTitle .logo {
+	height: 28px;
+}
+
+.VPHero .image-src {
+	max-width: 280px;
+}
+
+.version-banner {
+	margin-bottom: 24px;
+	padding: 12px 16px;
+	border: 1px solid var(--vp-c-warning-2);
+	border-radius: 8px;
+	background-color: var(--vp-c-warning-soft);
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+.version-banner a {
+	color: var(--vp-c-brand-1);
+	font-weight: 500;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.VPHome .version-banner {
+	max-width: 1152px;
+	margin: 24px auto 0;
+}
+
+/* `^?` results read as a comment under the code (`// flags: { … }`), not as a tooltip. */
+.twoslash .twoslash-query-line .twoslash-popup-container {
+	display: inline;
+	margin: 0;
+	border: 0;
+	background: none;
+	box-shadow: none;
+	transform: none;
+}
+
+/* The comment shows the type only: a doc comment (from JSDoc) belongs in the hover popup. */
+.twoslash .twoslash-query-line .twoslash-popup-arrow,
+.twoslash .twoslash-query-line .twoslash-popup-docs,
+.twoslash .twoslash-query-line .twoslash-popup-docs-tags {
+	display: none;
+}
+
+.twoslash .twoslash-query-line .twoslash-popup-code,
+.twoslash .twoslash-query-line .twoslash-popup-code * {
+	display: inline;
+	margin: 0;
+	padding: 0 !important;
+	border: 0;
+	background: none !important;
+	font-size: inherit;
+	white-space: normal;
+	color: #6a737d !important;
+}
+
+.twoslash .twoslash-query-line .twoslash-popup-code::before {
+	content: '// ';
+}
+
+/* The queried token's own popper, always open but empty once the result is a line. */
+.v-popper--theme-twoslash-query {
+	display: none;
+}
+
+/* The animated background of the home page (`HeroVortex.vue`). It starts under the nav
+   (transparent at the top), sits behind the content, reaches partway under the feature cards
+   and fades out towards the bottom. `--hero-bottom` is where the hero ends, set by the
+   component; until then it covers the whole home section. */
+.VPHome {
+	position: relative;
+	isolation: isolate;
+}
+
+.hero-vortex {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: -1;
+	max-height: 100%;
+	pointer-events: none;
+	mask-image: linear-gradient(to bottom, #000 50%, transparent);
+}
+
+.hero-vortex canvas {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+/* The home page's code window (`HeroShowcase.vue`) takes the hero image's place. It needs
+   about 1280px to sit beside the text (VitePress keeps the text column at up to 592px), so
+   below that it stacks under the text. `min-width: 0` lets the code scroll inside the window
+   rather than widen the layout. */
+.VPHero .image {
+	order: 2;
+	min-width: 0;
+	margin: 40px 0 0;
+}
+
+.VPHero .image .image-container {
+	width: 100%;
+	min-width: 0;
+	height: auto;
+	transform: none;
+}
+
+@media (min-width: 960px) and (max-width: 1279px) {
+	.VPHero.has-image .container {
+		flex-direction: column;
+	}
+
+	.VPHero.has-image .main {
+		width: auto;
+	}
+
+	.VPHero .image .image-container {
+		justify-content: flex-start;
+	}
+
+	.VPHero .hero-showcase {
+		margin: 0;
+	}
+}
+
+@media (min-width: 1280px) {
+	/* A little narrower than VitePress's 592px, so the code fits beside it. (Extra
+	   specificity to outrank VitePress's scoped component styles.) */
+	.VPHome .VPHero.has-image .container .main {
+		max-width: 544px;
+	}
+
+	.VPHero .image {
+		display: flex;
+		flex: 1 1 0;
+		align-items: center;
+		margin: 0;
+	}
+
+	.VPHero .image .image-container {
+		padding-left: 32px;
+	}
+}
+
+.hero-showcase {
+	position: relative;
+	width: 100%;
+	min-width: 0;
+	max-width: 640px;
+	margin: 0 auto;
+	overflow: hidden;
+	border: 1px solid var(--vp-c-divider);
+	border-radius: 12px;
+	background-color: var(--vp-code-block-bg);
+	box-shadow: var(--vp-shadow-4);
+	text-align: left;
+}
+
+.hero-showcase-bar {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.hero-showcase-dot {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background-color: #ff5f57;
+}
+
+.hero-showcase-dot:nth-child(2) {
+	background-color: #febc2e;
+}
+
+.hero-showcase-dot:nth-child(3) {
+	background-color: #28c840;
+}
+
+.hero-showcase-file {
+	margin-left: 8px;
+	font-family: var(--vp-font-family-mono);
+	font-size: 12px;
+	color: var(--vp-c-text-2);
+}
+
+.hero-showcase .vp-doc div[class*='language-'] {
+	margin: 0;
+	border-radius: 0;
+	background-color: transparent;
+}
+
+.hero-showcase .vp-doc div[class*='language-'] pre {
+	padding: 16px 0;
+}
+
+.hero-showcase .vp-doc div[class*='language-'] code {
+	padding: 0 16px;
+	font-size: 12px;
+	tab-size: 2;
+}
+
+/* A showcase, not a snippet to copy. */
+.hero-showcase .vp-doc div[class*='language-'] > button.copy,
+.hero-showcase .vp-doc div[class*='language-'] > span.lang {
+	display: none;
+}

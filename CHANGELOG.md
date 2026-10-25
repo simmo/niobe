@@ -10,11 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Linting with oxlint and dead-code checks with fallow, both run in CI
+- Documentation site with guides and an API reference, at https://simmo.github.io/niobe/
 - Agent guide (`AGENTS.md`) and Claude Code hooks that format, lint and check the changelog
 
 ### Changed
 
 - Formatting uses oxfmt instead of Prettier
+- The README is now a short introduction; the API reference moved to the documentation site
 
 ## [2.0.0] - 2025-06-14
 

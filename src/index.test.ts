@@ -1,3 +1,6 @@
+import { readdirSync, readFileSync } from 'node:fs';
+
+import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
 
 import * as api from './index.js';
@@ -36,5 +39,46 @@ describe('api', () => {
 			  "weeks": [Function],
 			}
 		`);
+	});
+});
+
+describe('documentation', () => {
+	// Every export: values at runtime, plus the types named in `index.ts`.
+	const exported = () => {
+		const file = new URL('index.ts', import.meta.url);
+		const source = ts.createSourceFile(
+			'index.ts',
+			readFileSync(file, 'utf8'),
+			ts.ScriptTarget.Latest,
+		);
+		const types = source.statements.flatMap((statement) =>
+			ts.isExportDeclaration(statement) &&
+			statement.isTypeOnly &&
+			statement.exportClause &&
+			ts.isNamedExports(statement.exportClause)
+				? statement.exportClause.elements.map((element) => element.name.text)
+				: [],
+		);
+		return [...Object.keys(api), ...types];
+	};
+
+	// Headings of the API reference (`docs/api/*.md`) naming an export, e.g. ``## `minutes` ``.
+	const documented = () => {
+		const dir = new URL('../docs/api/', import.meta.url);
+		const pages = readdirSync(dir).filter((name) => name.endsWith('.md'));
+		return new Set(
+			pages.flatMap((page) =>
+				[...readFileSync(new URL(page, dir), 'utf8').matchAll(/^#{2,3} `(\w+)`/gm)].map(
+					([, name]) => name,
+				),
+			),
+		);
+	};
+
+	it('every export has a heading in the API reference', () => {
+		const names = exported();
+		expect(names).toContain('Parts');
+		const headings = documented();
+		expect(names.filter((name) => !headings.has(name))).toEqual([]);
 	});
 });
