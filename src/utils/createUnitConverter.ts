@@ -30,16 +30,10 @@ export type UnitConverter = {
 
 export const createUnitConverter = (unit: number): UnitConverter => {
 	const fn = (amount: number) =>
-		floatOperation(
-			[unit],
-			([normalisedUnit], factor) => (amount * normalisedUnit) / factor,
-		);
+		floatOperation([unit], ([normalisedUnit], factor) => (amount * normalisedUnit) / factor);
 
 	fn.from = (ms: number) =>
-		floatOperation(
-			[ms, unit],
-			([normalisedMs, normalisedUnit]) => normalisedMs / normalisedUnit,
-		);
+		floatOperation([ms, unit], ([normalisedMs, normalisedUnit]) => normalisedMs / normalisedUnit);
 
 	return fn;
 };

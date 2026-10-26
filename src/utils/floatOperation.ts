@@ -8,7 +8,7 @@ export const floatOperation = (
 	const factor = Math.pow(10, maxDecimals);
 
 	return operation(
-		floats.map(value => Math.round(value * factor)),
+		floats.map((value) => Math.round(value * factor)),
 		factor,
 	);
 };

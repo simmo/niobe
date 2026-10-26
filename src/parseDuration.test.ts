@@ -1,4 +1,5 @@
-import { describe, expect, it, test } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { parseDuration } from './parseDuration.js';
 
 const createAllPossibleOptions = (parts: string[]): string[] => {
@@ -46,16 +47,13 @@ describe('parseDuration()', () => {
 		['ordered', testCases],
 		[
 			'unordered',
-			testCases.map<[string[], number]>(([parts, expected]) => [
-				parts.reverse(),
-				expected,
-			]),
+			testCases.map<[string[], number]>(([parts, expected]) => [parts.reverse(), expected]),
 		],
 	])('parses multiple %s time units with mixed spacing', (_, cases) => {
 		cases.forEach(([parts, expected]) => {
 			const inputs = createAllPossibleOptions(parts);
 
-			inputs.forEach(input => {
+			inputs.forEach((input) => {
 				expect(parseDuration(input), `${input}`).toBe(expected);
 			});
 		});

@@ -49,11 +49,8 @@ describe('clockToMs()', () => {
 	])('%s time', (_, isNegative) => {
 		const [offset, sign] = isNegative ? [-1, '-'] : [1, ''];
 
-		it.each(testCases)(
-			`returns ${sign}%s for ${sign}%s`,
-			(milliseconds, clock) => {
-				expect(clockToMs(`${sign}${clock}`)).toBe(milliseconds * offset);
-			},
-		);
+		it.each(testCases)(`returns ${sign}%s for ${sign}%s`, (milliseconds, clock) => {
+			expect(clockToMs(`${sign}${clock}`)).toBe(milliseconds * offset);
+		});
 	});
 });

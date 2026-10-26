@@ -1,6 +1,7 @@
 {
 	"recommendations": [
-		"dbaeumer.vscode-eslint",
+		"fallow-rs.fallow-vscode",
+		"oxc.oxc-vscode",
 		"streetsidesoftware.code-spell-checker"
 	]
 }

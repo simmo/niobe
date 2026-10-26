@@ -1,0 +1,7 @@
+{
+	"$schema": "./node_modules/fallow/schema.json",
+	// Resolves class members used through subclasses.
+	"typeAware": {
+		"enabled": true,
+	},
+}

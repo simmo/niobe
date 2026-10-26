@@ -1,10 +1,7 @@
 import { type TimeUnit } from './types/TimeUnit.js';
 import { unitToConverterMap } from './utils/unitToConverterMap.js';
 
-const regex = new RegExp(
-	`(\\d+(?:\\.\\d+)?)(${Object.keys(unitToConverterMap).join('|')})`,
-	'g',
-);
+const regex = new RegExp(`(\\d+(?:\\.\\d+)?)(${Object.keys(unitToConverterMap).join('|')})`, 'g');
 
 /**
  * Parses a duration string, returning milliseconds.
@@ -36,10 +33,7 @@ const regex = new RegExp(
  * ```
  */
 
-export const parseDuration = (
-	duration: string,
-	strict: boolean = false,
-): number => {
+export const parseDuration = (duration: string, strict: boolean = false): number => {
 	let total: number | null = null;
 	let match: RegExpExecArray | null;
 
@@ -53,8 +47,7 @@ export const parseDuration = (
 		}
 	}
 
-	if (total === null && strict)
-		throw new Error(`"${duration}" is not a valid duration`);
+	if (total === null && strict) throw new Error(`"${duration}" is not a valid duration`);
 
 	return total ?? 0;
 };

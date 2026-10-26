@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { getDecimalPlaces } from './getDecimalPlaces.js';
 
 describe('getDecimalPlaces()', () => {
@@ -8,6 +9,6 @@ describe('getDecimalPlaces()', () => {
 		expect(getDecimalPlaces(1)).toBe(0);
 		expect(getDecimalPlaces(0.001)).toBe(3);
 		expect(getDecimalPlaces(1e-7)).toBe(7);
-		expect(getDecimalPlaces(1234567890.123456789)).toBe(7);
+		expect(getDecimalPlaces(1234567890.1234567)).toBe(7);
 	});
 });

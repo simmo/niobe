@@ -4,7 +4,7 @@ import { HMS_SEPARATOR } from './constants/HmsSeparator.js';
 import { msToParts } from './msToParts.js';
 import { padLeadingZero } from './utils/padLeadingZero.js';
 
-interface Options {
+export interface Options {
 	separateDecimal?: boolean;
 }
 
@@ -30,37 +30,22 @@ interface Options {
  * ```
  */
 
-export const msToClock = (
-	ms: number,
-	{ separateDecimal = true }: Options = {},
-): string => {
-	const {
-		hours,
-		isNegative,
-		nanoseconds,
-		microseconds,
-		milliseconds,
-		minutes,
-		seconds,
-	} = msToParts(ms);
+export const msToClock = (ms: number, { separateDecimal = true }: Options = {}): string => {
+	const { hours, isNegative, nanoseconds, microseconds, milliseconds, minutes, seconds } =
+		msToParts(ms);
 	const time = [hours, minutes, seconds]
-		.map(value => padLeadingZero(value, 2))
+		.map((value) => padLeadingZero(value, 2))
 		.join(HMS_SEPARATOR);
 
-	const decimal = [nanoseconds, microseconds, milliseconds].reduce(
-		(acc, value, index) => {
-			if (!acc && value === 0) return acc;
+	const decimal = [nanoseconds, microseconds, milliseconds].reduce((acc, value, index) => {
+		if (!acc && value === 0) return acc;
 
-			return (
-				padLeadingZero(value, 3) +
-				(separateDecimal && acc && index !== 0 ? DECIMAL_UNIT_SEPARATOR : '') +
-				acc
-			);
-		},
-		'',
-	);
+		return (
+			padLeadingZero(value, 3) +
+			(separateDecimal && acc && index !== 0 ? DECIMAL_UNIT_SEPARATOR : '') +
+			acc
+		);
+	}, '');
 
-	return [`${isNegative ? '-' : ''}${time}`, decimal]
-		.filter(Boolean)
-		.join(DECIMAL_SEPARATOR);
+	return [`${isNegative ? '-' : ''}${time}`, decimal].filter(Boolean).join(DECIMAL_SEPARATOR);
 };

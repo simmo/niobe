@@ -10,9 +10,7 @@ import type { ModuleFormat, RollupOptions } from 'rollup';
 import { defineConfig } from 'rollup';
 import { dts } from 'rollup-plugin-dts';
 
-const pkg = JSON.parse(
-	readFileSync(new URL('./package.json', import.meta.url)).toString(),
-);
+const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url)).toString());
 
 const builds: Array<{
 	extension: string;
@@ -46,7 +44,7 @@ export default defineConfig([
 			commonjs(),
 			terser({}),
 		],
-		external: [...Object.keys(pkg.peerDependencies ?? {})],
+		external: Object.keys(pkg.peerDependencies ?? {}),
 	})),
 	{
 		input: './dist/.types/index.d.ts',

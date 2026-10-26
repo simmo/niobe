@@ -1,14 +1,7 @@
 import { DECIMAL_SEPARATOR } from './constants/DecimalSeparator.js';
 import { DECIMAL_UNIT_SEPARATOR } from './constants/DecimalUnitSeparator.js';
 import { HMS_SEPARATOR } from './constants/HmsSeparator.js';
-import {
-	hours,
-	microseconds,
-	milliseconds,
-	minutes,
-	nanoseconds,
-	seconds,
-} from './conversion.js';
+import { hours, microseconds, milliseconds, minutes, nanoseconds, seconds } from './conversion.js';
 
 /**
  * Converts a `hh:mm:ss.ms_μs_ns` string to milliseconds.
@@ -61,13 +54,8 @@ import {
 
 export const clockToMs = (clock: string): number => {
 	const [time, fraction] = clock.split(DECIMAL_SEPARATOR);
-	const [timeAbsolute, isNegative] = time.startsWith('-')
-		? [time.slice(1), true]
-		: [time, false];
-	const [s = 0, m = 0, h = 0] = timeAbsolute
-		.split(HMS_SEPARATOR)
-		.map(Number)
-		.reverse();
+	const [timeAbsolute, isNegative] = time.startsWith('-') ? [time.slice(1), true] : [time, false];
+	const [s = 0, m = 0, h = 0] = timeAbsolute.split(HMS_SEPARATOR).map(Number).reverse();
 
 	let millis = 0;
 	let micros = 0;
@@ -83,12 +71,9 @@ export const clockToMs = (clock: string): number => {
 			micros = parseInt(fractionStr.slice(3, 6), 10);
 			nanos = parseInt(fractionStr.slice(6, 9), 10);
 		} else {
-			if (typeof parts[0] !== 'undefined')
-				millis = parseInt(parts[0].padEnd(3, '0'), 10);
-			if (typeof parts[1] !== 'undefined')
-				micros = parseInt(parts[1].padEnd(3, '0'), 10);
-			if (typeof parts[2] !== 'undefined')
-				nanos = parseInt(parts[2].padEnd(3, '0'), 10);
+			if (typeof parts[0] !== 'undefined') millis = parseInt(parts[0].padEnd(3, '0'), 10);
+			if (typeof parts[1] !== 'undefined') micros = parseInt(parts[1].padEnd(3, '0'), 10);
+			if (typeof parts[2] !== 'undefined') nanos = parseInt(parts[2].padEnd(3, '0'), 10);
 		}
 	}
 
