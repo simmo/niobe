@@ -4,5 +4,15 @@
 		"isolatedModules": true,
 		"module": "ESNext",
 		"moduleResolution": "Bundler"
-	}
+	},
+	// `**/*` skips dot-directories, so the docs site's config and theme are listed too.
+	"include": ["**/*", "docs/.vitepress/**/*"],
+	"exclude": [
+		"node_modules",
+		"docs/.vitepress/cache",
+		"docs/.vitepress/dist",
+		// Browser code, checked with the DOM types by its own tsconfig (`npm run typecheck`).
+		"docs/.vitepress/theme",
+		"_site"
+	]
 }

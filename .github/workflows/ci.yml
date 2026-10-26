@@ -46,11 +46,20 @@ jobs:
       - name: Dead Code
         run: npm run dead-code
 
+      # Fails on dead links, and on docs examples that no longer type-check against `src`.
+      - name: Docs
+        run: npm run docs:build
+
   prerelease:
     name: Prerelease
     needs: [test, code-style]
     if: github.event_name == 'push'
     uses: ./.github/workflows/release.yml
+    # The release redeploys the docs, which needs Pages access.
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     secrets: inherit
     with:
       release: prerelease

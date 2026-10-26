@@ -1,0 +1,52 @@
+name: Docs
+
+# Rebuilds every version of the docs from its tag and deploys the site to GitHub Pages.
+# Called by release.yml after each release; run it by hand to redeploy (e.g. after changing
+# the site's base path).
+on:
+  workflow_call:
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Every tag, so each version can be built from its own source.
+          fetch-depth: 0
+
+      # Only Node is needed here: each version installs its own dependencies.
+      - name: Setup
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Build
+        # Served from `homepage` in package.json. Changing it rebuilds every version with it.
+        run: npm run docs:build:all -- _site
+
+      - name: Upload
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deploy
+        uses: actions/deploy-pages@v5
