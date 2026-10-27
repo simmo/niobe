@@ -35,7 +35,7 @@ npm i niobe
 
 ## Documentation
 
-Guides and the full API reference are at **[simmo.github.io/niobe](https://simmo.github.io/niobe/)**.
+Guides and the full API reference are at **[niobe.js.org](https://niobe.js.org/)**.
 
 See the [changelog](./CHANGELOG.md) for the latest changes, or the [contribution guide](./CONTRIBUTING.md) if you want to get involved.
 
