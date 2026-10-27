@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
@@ -21,7 +22,12 @@ const builds: Array<{
 	{
 		extension: 'js',
 		format: 'esm',
-		compilerOptions: { declaration: true, declarationDir: 'dist/.types' },
+		compilerOptions: {
+			declaration: true,
+			// Absolute, because TypeScript reads paths from `src/tsconfig.json`'s folder but the
+			// plugin checks this one against the output folder from the project root.
+			declarationDir: fileURLToPath(new URL('./dist/.types', import.meta.url)),
+		},
 	},
 ];
 
@@ -37,6 +43,8 @@ export default defineConfig([
 			resolve({ browser: true }),
 			json(),
 			typescript({
+				// The library's own config: no Node or DOM types (see `src/tsconfig.json`).
+				tsconfig: './src/tsconfig.json',
 				filterRoot: false,
 				// Only the library: the docs site and scripts would move the declarations' root.
 				include: ['**/src/**/*.ts'],

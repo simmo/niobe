@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Formatting uses oxfmt instead of Prettier
 - The README is now a short introduction; the API reference moved to the documentation site
+- Releases are published from GitHub Actions with npm trusted publishing and staged publishing, so each version has a provenance attestation and is approved on npm before it goes live
+- Development, CI and releases use Node 24 (`.nvmrc`)
+- The library is type-checked without Node or browser types, so it stays usable in any JavaScript runtime
+- Development dependencies updated, including TypeScript 6, Vitest 5 and release-it 21, and GitHub Actions moved to their latest versions
 
 ## [2.0.0] - 2025-06-14
 

@@ -1,29 +1,27 @@
 name: Setup
+description: Install Node.js (from .nvmrc unless node-version is given) and dependencies
 
 inputs:
-  npm-token:
+  node-version:
+    description: Node.js version to use instead of the one in .nvmrc
     type: string
 
 runs:
   using: 'composite'
   steps:
     - name: Setup
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v7
       with:
-        node-version-file: '.nvmrc'
+        node-version: ${{ inputs.node-version }}
+        node-version-file: ${{ !inputs.node-version && '.nvmrc' || '' }}
         cache: 'npm'
 
     - name: Install
       shell: bash
       run: npm ci
 
-    - name: Configure NPM
-      shell: bash
-      if: inputs.npm-token
-      run: npm config set //registry.npmjs.org/:_authToken ${{ inputs.npm-token }}
-
     - name: Configure Git
       shell: bash
       run: |
-        git config user.name "${GITHUB_ACTOR}"
-        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"

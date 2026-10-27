@@ -52,6 +52,7 @@ Use the Node version in `.nvmrc`. Before reporting work as done, run tests, type
 - Changes to the public API also update `src/index.test.ts`, which pins the exports, and the API reference in `docs/api/`.
 - Exported functions must not reference unexported types in their signatures (fallow reports these as private type leaks): export the type.
 - Tabs and single quotes; `oxfmt` decides formatting and import order. Don't hand-format.
+- Niobe runs in any JavaScript runtime. `src/tsconfig.json` checks and builds the library without Node or DOM types, so don't use runtime-specific globals (`process`, `document`, timers) or `node:` modules in `src`. Tests and tooling use the root `tsconfig.json`, which has Node's types.
 
 ## Agent hooks
 
