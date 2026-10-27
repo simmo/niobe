@@ -7,7 +7,8 @@
 //
 // Each version is built from its own tag, so the docs always match what was published. Tags
 // without docs (from before the site existed) are skipped. Until there's a release with
-// docs, the root shows the newest prerelease.
+// docs, the root shows the newest prerelease, and until any tag has docs, it shows the
+// current commit.
 //
 // The site is served from `homepage` in package.json. It's read here, from the current
 // checkout, and passed to every version's build as `DOCS_SITE_ORIGIN` and `DOCS_SITE_BASE`, so
@@ -27,7 +28,10 @@ interface Target {
 }
 
 const out = resolve(process.argv[2] ?? '_site');
-const { homepage } = JSON.parse(readFileSync('package.json', 'utf8')) as { homepage: string };
+const { homepage, version } = JSON.parse(readFileSync('package.json', 'utf8')) as {
+	homepage: string;
+	version: string;
+};
 // `https://simmo.github.io/niobe/` → `https://simmo.github.io` and `/niobe/`.
 const { origin: siteOrigin, pathname: siteBase } = new URL(homepage);
 const marker = 'docs/.vitepress/config.ts';
@@ -37,7 +41,8 @@ const run = (command: string, args: string[], cwd = process.cwd(), env = process
 
 const hasDocs = (tag: string) => {
 	try {
-		run('git', ['cat-file', '-e', `${tag}:${marker}`]);
+		// Quietly: git reports every tag without docs as `fatal`, which is expected here.
+		execFileSync('git', ['cat-file', '-e', `${tag}:${marker}`], { stdio: 'ignore' });
 		return true;
 	} catch {
 		return false;
@@ -50,12 +55,12 @@ const tags = run('git', ['-c', 'versionsort.suffix=-', 'tag', '--list', '--sort=
 	.filter((tag) => tag !== '' && hasDocs(tag));
 const isPrerelease = (tag: string) => tag.includes('-');
 const releases = tags.filter((tag) => !isPrerelease(tag));
-const latest = releases[0] ?? tags[0];
+// No tag has docs yet (the site is newer than the latest release), so publish the current
+// commit until one does.
+const latest = releases[0] ?? tags[0] ?? 'HEAD';
 
-if (latest === undefined) {
-	console.error(`No tags contain ${marker}, so there are no docs to build.`);
-	process.exit(1);
-}
+if (latest === 'HEAD')
+	console.warn(`No tags contain ${marker} yet, so building the current commit.`);
 
 // The newest tag, when it's a prerelease newer than the latest release.
 const next = tags[0] !== undefined && tags[0] !== latest && isPrerelease(tags[0]) ? tags[0] : null;
@@ -97,7 +102,8 @@ try {
 
 writeFileSync(
 	join(out, 'versions.json'),
-	`${JSON.stringify({ latest, next, versions: releases })}\n`,
+	// The current commit is labelled with its package version.
+	`${JSON.stringify({ latest: latest === 'HEAD' ? version : latest, next, versions: releases })}\n`,
 );
 
 if (!existsSync(join(out, 'index.html'))) throw new Error(`Nothing was built into ${out}`);

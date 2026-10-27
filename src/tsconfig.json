@@ -1,0 +1,15 @@
+{
+	// The library runs anywhere (Node, browsers, workers, Deno, Bun), so it gets neither the
+	// Node types (the root config's, for tests and tooling) nor the DOM types: a runtime-specific
+	// global can't slip into the published code. Tests run in Node, so the root config checks
+	// them instead.
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"lib": ["es2024", "ESNext.Array", "ESNext.Collection", "ESNext.Iterator", "ESNext.Promise"],
+		"types": [],
+		// TypeScript 6 needs the declarations' root set explicitly when emitting them.
+		"rootDir": "."
+	},
+	"include": ["./**/*"],
+	"exclude": ["./**/*.test.ts"]
+}

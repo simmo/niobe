@@ -30,7 +30,7 @@ How the site is published:
 
 - Releases deploy it. `release.yml` calls `docs.yml`, which runs `scripts/build-docs.ts` and deploys to GitHub Pages. Run `docs.yml` by hand to redeploy without a release.
 - The site's address is `homepage` in `package.json`. `scripts/build-docs.ts` reads it from the current checkout and passes it to every version's build, so changing it moves every version, old tags included. Don't hard-code the address in `docs/`.
-- `scripts/build-docs.ts` rebuilds every version from its own tag: the root is the latest release, `/<version>/` is each release, and `/next/` is the newest prerelease. Tags without `docs/.vitepress/config.ts` are skipped. Node runs it directly (type stripping), so it can only use erasable TypeScript syntax and `node:` modules.
+- `scripts/build-docs.ts` rebuilds every version from its own tag: the root is the latest release, `/<version>/` is each release, and `/next/` is the newest prerelease. Tags without `docs/.vitepress/config.ts` are skipped. Until any tag has docs, it builds the current commit instead, labelled with the `package.json` version. Node runs it directly (type stripping), so it can only use erasable TypeScript syntax and `node:` modules.
 - Old tags are rebuilt with today's script, so the build contract must stay compatible: `npx vitepress build docs` in a checkout of the tag, with `DOCS_SITE_ORIGIN`, `DOCS_SITE_BASE` and `DOCS_VERSION` set in the environment (see `docs/.vitepress/config.ts`).
 - Each build also writes files for AI assistants: `llms.txt`, `llms-full.txt` and a `.md` copy of every page (`vitepress-plugin-llms`). `docs/.vitepress/llms.ts` writes the twoslash types and errors into those copies as comments.
 
@@ -52,6 +52,7 @@ Use the Node version in `.nvmrc`. Before reporting work as done, run tests, type
 - Changes to the public API also update `src/index.test.ts`, which pins the exports, and the API reference in `docs/api/`.
 - Exported functions must not reference unexported types in their signatures (fallow reports these as private type leaks): export the type.
 - Tabs and single quotes; `oxfmt` decides formatting and import order. Don't hand-format.
+- Niobe runs in any JavaScript runtime. `src/tsconfig.json` checks and builds the library without Node or DOM types, so don't use runtime-specific globals (`process`, `document`, timers) or `node:` modules in `src`. Tests and tooling use the root `tsconfig.json`, which has Node's types.
 
 ## Agent hooks
 
