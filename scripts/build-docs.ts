@@ -32,7 +32,7 @@ const { homepage, version } = JSON.parse(readFileSync('package.json', 'utf8')) a
 	homepage: string;
 	version: string;
 };
-// `https://simmo.github.io/niobe/` → `https://simmo.github.io` and `/niobe/`.
+// `https://niobe.js.org/` → `https://niobe.js.org` and `/`.
 const { origin: siteOrigin, pathname: siteBase } = new URL(homepage);
 const marker = 'docs/.vitepress/config.ts';
 
