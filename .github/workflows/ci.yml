@@ -7,24 +7,58 @@ on:
 
 jobs:
   test:
-    name: Test
+    name: Test (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        # Every major covered by `engines` (>=22.12), including the `.nvmrc` pin (24).
+        node: ['22', '24', '26']
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
       - name: Setup
         uses: ./.github/actions/setup
+        with:
+          node-version: ${{ matrix.node }}
 
       - name: Test
-        run: npm test
-
-      - name: Coverage
-        run: npm run coverage
+        run: npm run test:coverage
 
       - name: Typecheck
         run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      - name: Package
+        run: npm run test:package
+
+  minimum-node:
+    name: Package (Node 22.12)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # Build with the pinned Node (the build tools need a newer 22.x than consumers do).
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Build
+        run: npm run build
+
+      # Then load the build on the lowest Node `engines` allows.
+      - name: Setup minimum Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22.12.0'
+
+      - name: Package
+        run: npm run test:package
 
   code-style:
     name: Code Style

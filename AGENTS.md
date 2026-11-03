@@ -36,12 +36,12 @@ How the site is published:
 
 ## Commands
 
-- `npm test` runs vitest in watch mode; `npx vitest run` runs once. `npm run coverage` adds coverage
+- `npm test` runs the unit tests with vitest in watch mode; `npm run test:coverage` runs them once with coverage. `npm run test:package` tests the built `dist`, including loading it with `require('niobe')`, so run `npm run build` first
 - `npm run typecheck`
 - `npm run lint` (`oxlint`; `lint:fix` applies safe fixes)
 - `npm run format` (`oxfmt`; `format:check` in CI)
 - `npm run dead-code` runs `fallow dead-code` (unused code, private type leaks, circular dependencies; type-aware via `.fallowrc.jsonc`)
-- `npm run build` produces `dist/` with rollup
+- `npm run build` produces `dist/index.js` and `dist/index.d.ts` with tsdown (ESM only; CommonJS consumers load it with `require()`, Node >= 22.12)
 - `npm run docs:dev` serves the docs site locally. `npm run docs:build` builds it, failing on dead links or broken `twoslash` examples. `npm run docs:build:all -- <out-dir>` builds every published version, as the deploy does (needs git tags)
 
 Use the Node version in `.nvmrc`. Before reporting work as done, run tests, typecheck, lint, format, dead-code and `docs:build`. CI's Code Style job fails on any of them.

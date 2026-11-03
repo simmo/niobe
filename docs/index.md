@@ -29,5 +29,5 @@ features:
   - title: Split into parts
     details: msToParts breaks a duration into weeks, days, hours and smaller units, and partsToMs puts it back together.
   - title: Small and typed
-    details: No runtime dependencies, ESM and CommonJS builds, and types for everything, including the constants.
+    details: No runtime dependencies, works with ESM and CommonJS, and types for everything, including the constants.
 ---
