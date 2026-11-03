@@ -59,7 +59,7 @@ const alignQueries = (node: HastNode) => {
 
 export default defineConfig({
 	title: 'Niobe',
-	description: 'Human-readable durations for JavaScript and TypeScript',
+	description: 'Composable, human-readable durations for JavaScript and TypeScript',
 	base,
 	// Partials imported by the theme (e.g. the home page's showcase), not pages.
 	srcExclude: ['parts/**'],
@@ -87,7 +87,7 @@ export default defineConfig({
 				domain: siteOrigin,
 				ignoreFiles: ['parts/**'],
 				title: 'Niobe',
-				description: 'Human-readable durations for JavaScript and TypeScript',
+				description: 'Composable, human-readable durations for JavaScript and TypeScript',
 				details: [
 					'Use Niobe to write durations as `minutes(2) + seconds(30)` instead of `150_000`, convert milliseconds back to any unit, parse strings like `1h 30m`, read and write clock strings like `01:30:00`, and split a duration into its parts.',
 					'Install it with `npm install niobe`. It has no runtime dependencies and works in Node and browsers. Every value is a number of milliseconds. Its types (`node_modules/niobe/dist/index.d.ts`) are the most reliable reference for the installed version.',

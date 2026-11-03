@@ -56,13 +56,14 @@ jobs:
           fetch-depth: 0
 
       # Release only code CI tested. release-it needs the branch (not a detached SHA) to push
-      # its release commit, so compare instead. Any change since the tested commit came from a
-      # push with its own CI run, which releases it.
+      # its release commit, so compare instead. Generated files are ignored: CI's Generate job
+      # pushes badge updates (with GITHUB_TOKEN, so they never run CI themselves). Any other
+      # change since the tested commit came from a push with its own CI run, which releases it.
       - name: Check Commit
         id: commit
         if: github.event_name == 'workflow_run'
         run: |
-          if git diff --quiet "${{ github.event.workflow_run.head_sha }}" HEAD; then
+          if git diff --quiet "${{ github.event.workflow_run.head_sha }}" HEAD -- . ':(exclude).github/badges'; then
             echo "current=true" >> "$GITHUB_OUTPUT"
           else
             echo "main has changed since ${{ github.event.workflow_run.head_sha }}; skipping."

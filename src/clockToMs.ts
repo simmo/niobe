@@ -71,8 +71,8 @@ export const clockToMs = (clock: string): number => {
 			micros = parseInt(fractionStr.slice(3, 6), 10);
 			nanos = parseInt(fractionStr.slice(6, 9), 10);
 		} else {
-			if (typeof parts[0] !== 'undefined') millis = parseInt(parts[0].padEnd(3, '0'), 10);
-			if (typeof parts[1] !== 'undefined') micros = parseInt(parts[1].padEnd(3, '0'), 10);
+			millis = parseInt(parts[0].padEnd(3, '0'), 10);
+			micros = parseInt(parts[1].padEnd(3, '0'), 10);
 			if (typeof parts[2] !== 'undefined') nanos = parseInt(parts[2].padEnd(3, '0'), 10);
 		}
 	}

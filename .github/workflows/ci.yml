@@ -5,6 +5,9 @@ on:
   push:
     branches: main
 
+env:
+  BRANCH: ${{ github.head_ref || github.ref_name }}
+
 jobs:
   test:
     name: Test (Node ${{ matrix.node }})
@@ -59,6 +62,71 @@ jobs:
 
       - name: Package
         run: npm run test:package
+
+  code-style:
+    name: Code Style
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Format
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Dead Code
+        run: npm run dead-code
+
+      # Fails on dead links, and on docs examples that no longer type-check against `src`.
+      - name: Docs
+        run: npm run docs:build
+
+  generate:
+    name: Generate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event_name == 'push'
+    # Pushes the regenerated badge back to the branch.
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ env.BRANCH }}
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Generate Fallow Badge
+        run: npm run gen:fallow-badge
+
+      - name: Check for Changes
+        id: check_changes
+        run: |
+          if [[ -n "$(git diff --exit-code)" ]]; then
+            echo "Changes detected."
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "No changes detected."
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      # Pushed with GITHUB_TOKEN, so this commit never triggers CI itself ([skip ci] only
+      # matters if that changes). Release still runs for the tested commit: its guard
+      # ignores changes under .github/badges (see release.yml).
+      - name: Commit
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git add -A
+          git commit -m "chore: update generated files [skip ci]"
+          git push origin HEAD:${{ env.BRANCH }} --no-verify
 
   code-style:
     name: Code Style

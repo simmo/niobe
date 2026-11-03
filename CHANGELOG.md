@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Linting with oxlint and dead-code checks with fallow, both run in CI
 - Documentation site with guides and an API reference, at https://niobe.js.org/
 - Agent guide (`AGENTS.md`) and Claude Code hooks that format, lint and check the changelog
+- `MsToClockOptions` and `UnitConverter` types are exported
+- Type tests, a 100% coverage check and a generated fallow health badge, all run in CI
 
 ### Changed
 

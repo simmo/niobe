@@ -1,7 +1,7 @@
 {
 	"name": "niobe",
 	"version": "2.0.1-beta.2",
-	"description": "Tooling for creating durations",
+	"description": "Composable, human-readable durations for JavaScript and TypeScript",
 	"keywords": [
 		"date",
 		"date-time",
@@ -38,6 +38,7 @@
 		"docs:preview": "vitepress preview docs",
 		"format": "oxfmt",
 		"format:check": "oxfmt --check",
+		"gen:fallow-badge": "fallow health --format badge > .github/badges/health.svg",
 		"lint": "oxlint",
 		"lint:fix": "oxlint --fix",
 		"release": "release-it",

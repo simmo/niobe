@@ -1,8 +1,13 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, expectTypeOf, it } from 'vitest';
 
+import { type Parts } from './interfaces/Parts.js';
 import { msToParts } from './msToParts.js';
 
 describe('msToParts()', () => {
+	it('returns Parts', () => {
+		expectTypeOf(msToParts).returns.toEqualTypeOf<Parts>();
+	});
+
 	it('returns the correct parts for a positive duration', () => {
 		const result = msToParts(766_606_500);
 
