@@ -39,7 +39,7 @@ Separate milliseconds, microseconds and nanoseconds with underscores, or pad eac
 ## `msToClock`
 
 ```ts
-msToClock(ms: number, options?: { separateDecimal?: boolean }): string
+msToClock(ms: number, options?: MsToClockOptions): string
 ```
 
 Formats milliseconds as `hh:mm:ss`, adding `.ms_μs_ns` when there's a fraction of a second. Negative durations start with `-`. See [Clock strings](/guide/clock-strings).

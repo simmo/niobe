@@ -4,7 +4,7 @@ import { HMS_SEPARATOR } from './constants/HmsSeparator.js';
 import { msToParts } from './msToParts.js';
 import { padLeadingZero } from './utils/padLeadingZero.js';
 
-export interface Options {
+export interface MsToClockOptions {
 	separateDecimal?: boolean;
 }
 
@@ -30,7 +30,10 @@ export interface Options {
  * ```
  */
 
-export const msToClock = (ms: number, { separateDecimal = true }: Options = {}): string => {
+export const msToClock = (
+	ms: number,
+	{ separateDecimal = true }: MsToClockOptions = {},
+): string => {
 	const { hours, isNegative, nanoseconds, microseconds, milliseconds, minutes, seconds } =
 		msToParts(ms);
 	const time = [hours, minutes, seconds]

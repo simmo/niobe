@@ -5,9 +5,66 @@ on:
   push:
     branches: main
 
+env:
+  BRANCH: ${{ github.head_ref || github.ref_name }}
+
 jobs:
   test:
-    name: Test
+    name: Test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        # Every major covered by `engines` (>=22.12), including the `.nvmrc` pin (26).
+        node: ['22', '24', '26']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup
+        uses: ./.github/actions/setup
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Test
+        run: npm run test:coverage
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      - name: Package
+        run: npm run test:package
+
+  minimum-node:
+    name: Package (Node 22.12)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # Build with the pinned Node (the build tools need a newer 22.x than consumers do).
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Build
+        run: npm run build
+
+      # Then load the build on the lowest Node `engines` allows.
+      - name: Setup minimum Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22.12.0'
+
+      - name: Package
+        run: npm run test:package
+
+  code-style:
+    name: Code Style
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -17,14 +74,59 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
-      - name: Test
-        run: npm test
+      - name: Format
+        run: npm run format:check
 
-      - name: Coverage
-        run: npm run coverage
+      - name: Lint
+        run: npm run lint
 
-      - name: Typecheck
-        run: npm run typecheck
+      - name: Dead Code
+        run: npm run dead-code
+
+      # Fails on dead links, and on docs examples that no longer type-check against `src`.
+      - name: Docs
+        run: npm run docs:build
+
+  generate:
+    name: Generate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event_name == 'push'
+    # Pushes the regenerated badge back to the branch.
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ env.BRANCH }}
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Generate Fallow Badge
+        run: npm run gen:fallow-badge
+
+      - name: Check for Changes
+        id: check_changes
+        run: |
+          if [[ -n "$(git diff --exit-code)" ]]; then
+            echo "Changes detected."
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "No changes detected."
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      # Pushed with GITHUB_TOKEN, so this commit never triggers CI itself ([skip ci] only
+      # matters if that changes). Release still runs for the tested commit: its guard
+      # ignores changes under .github/badges (see release.yml).
+      - name: Commit
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git add -A
+          git commit -m "chore: update generated files [skip ci]"
+          git push origin HEAD:${{ env.BRANCH }} --no-verify
 
   code-style:
     name: Code Style

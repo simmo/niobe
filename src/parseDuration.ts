@@ -39,12 +39,8 @@ export const parseDuration = (duration: string, strict: boolean = false): number
 
 	while ((match = regex.exec(duration)) !== null) {
 		const [, num, unit] = match;
-		const fn = unitToConverterMap[unit as TimeUnit];
-
-		if (fn !== undefined) {
-			total ??= 0;
-			total += fn(parseFloat(num));
-		}
+		total ??= 0;
+		total += unitToConverterMap[unit as TimeUnit](parseFloat(num));
 	}
 
 	if (total === null && strict) throw new Error(`"${duration}" is not a valid duration`);

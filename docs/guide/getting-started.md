@@ -45,7 +45,7 @@ yarn add niobe
 
 :::
 
-Niobe has no runtime dependencies. It ships ESM and CommonJS builds, with types.
+Niobe has no runtime dependencies and comes with types. It needs Node 22.12 or newer. ESM projects work as usual, and CommonJS projects can `require('niobe')`, which loads the ESM build.
 
 ## What's included
 

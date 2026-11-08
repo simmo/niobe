@@ -24,5 +24,7 @@ export { partsToMs } from './partsToMs.js';
  * Types
  */
 
+export type { MsToClockOptions } from './msToClock.js';
 export type { Parts } from './interfaces/Parts.js';
 export type { TimeUnit } from './types/TimeUnit.js';
+export type { UnitConverter } from './utils/createUnitConverter.js';

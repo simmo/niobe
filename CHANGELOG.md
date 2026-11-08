@@ -12,15 +12,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Linting with oxlint and dead-code checks with fallow, both run in CI
 - Documentation site with guides and an API reference, at https://niobe.js.org/
 - Agent guide (`AGENTS.md`) and Claude Code hooks that format, lint and check the changelog
+- `MsToClockOptions` and `UnitConverter` types are exported
+- Type tests, a 100% coverage check and a generated fallow health badge, all run in CI
 
 ### Changed
 
+- **Breaking:** Niobe is now built as ESM only and needs Node 22.12 or newer. `import` works as before and CommonJS projects can still `require('niobe')`, which loads the ESM build. TypeScript projects that compile to CommonJS need `"module": "nodenext"`. On older Node versions, use `import()` or stay on 2.x
+- Built with tsdown instead of rollup, and no longer minified, so stack traces and published code are easier to read
 - Formatting uses oxfmt instead of Prettier
 - The README is now a short introduction; the API reference moved to the documentation site
 - Releases are published from GitHub Actions with npm trusted publishing and staged publishing, so each version has a provenance attestation and is approved on npm before it goes live
-- Development, CI and releases use Node 24 (`.nvmrc`)
+- Development, CI and releases use Node 26 (`.nvmrc`)
 - The library is type-checked without Node or browser types, so it stays usable in any JavaScript runtime
-- Development dependencies updated, including TypeScript 6, Vitest 5 and release-it 21, and GitHub Actions moved to their latest versions
+- Development dependencies updated, including TypeScript 6, Vitest 5, release-it 21 and VitePress 2.0.0-alpha.21, and GitHub Actions moved to their latest versions
+
+### Fixed
+
+- TypeScript types not being found, because `types` pointed to a file the package doesn't include
+- `main` pointing to a file that doesn't exist (`dist/index.jcs`)
 
 ## [2.0.0] - 2025-06-14
 

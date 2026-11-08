@@ -1,8 +1,24 @@
 import { describe, expect, it } from 'vitest';
 
+import { type Parts } from './interfaces/Parts.js';
 import { partsToMs } from './partsToMs.js';
 
 describe('partsToMs()', () => {
+	it('ignores values that are not positive numbers', () => {
+		const result = partsToMs({
+			hours: Number.NaN,
+			minutes: -1,
+			seconds: '1' as unknown as number,
+			milliseconds: 500,
+		});
+
+		expect(result).toEqual(500);
+	});
+
+	it('ignores unknown units', () => {
+		expect(partsToMs({ fortnights: 1, milliseconds: 500 } as Partial<Parts>)).toEqual(500);
+	});
+
 	it('returns the correct parts for a positive duration', () => {
 		const result = partsToMs({
 			days: 1,
